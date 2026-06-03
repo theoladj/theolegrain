@@ -64,19 +64,19 @@
     z-index: 1;
   }
   
-  /* Personnage gauche */
+  /* Personnage gauche - Zoomé à 140% pour masquer le texte de l'image */
   .hero-char-left {
-    width: 30%;
+    width: 35%;
     height: 100%;
-    background: url('https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-57144c8d-fd8d-440e-80c2-a198611d6734.jpg') left center / cover no-repeat;
+    background: url('https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-57144c8d-fd8d-440e-80c2-a198611d6734.jpg') left center / 140% no-repeat;
     opacity: 0.5;
   }
   
-  /* Personnage droite */
+  /* Personnage droite - Zoomé et décalé pour masquer le texte "BORDERLAND" de l'image d'origine */
   .hero-char-right {
-    width: 30%;
+    width: 35%;
     height: 100%;
-    background: url('https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-57144c8d-fd8d-440e-80c2-a198611d6734.jpg') right center / cover no-repeat;
+    background: url('https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-57144c8d-fd8d-440e-80c2-a198611d6734.jpg') right center / 140% no-repeat;
     transform: scaleX(-1);
     opacity: 0.5;
   }
@@ -337,7 +337,6 @@
 </footer>
 
 <script>
-  // ── Scroll reveal ──
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -349,7 +348,6 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  // ── Lightbox ──
   const images = [
     'https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-87e46fdc-55b9-44bd-99b9-ed122a8d1ef0.jpg',
     'https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-3a29eed5-15c4-4714-9628-66d11b69d81b.jpg',
