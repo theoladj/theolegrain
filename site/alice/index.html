@@ -1,398 +1,802 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Alice In Borderland — Théo Legrain</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
 <style>
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   html { scroll-behavior: smooth; }
 
+
+
   body {
+
     background: #000;
+
     color: #fff;
+
     font-family: 'Share Tech Mono', monospace;
+
     overflow-x: hidden;
+
   }
+
+
 
   /* ── NAV FIXE GAUCHE ── */
+
   nav {
+
     position: fixed;
+
     left: 28px;
+
     top: 50%;
+
     transform: translateY(-50%);
+
     z-index: 200;
+
     display: flex;
+
     flex-direction: column;
+
     gap: 14px;
+
   }
+
   nav a {
+
     color: #fff;
+
     text-decoration: none;
+
     font-family: 'Press Start 2P', monospace;
+
     font-size: 7px;
+
     letter-spacing: 0.05em;
+
     transition: color 0.2s;
+
     white-space: nowrap;
+
   }
+
   nav a:hover { color: #e50914; }
 
+
+
   /* ── SECTION 1 : HERO ── */
+
   #hero {
+
     position: relative;
-    width: 100%;
-    height: 100vh;
+
     min-height: 100vh;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     overflow: hidden;
+
     background: #000;
+
   }
+
+
 
   .hero-bg {
+
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+
+    inset: 0;
+
     display: flex;
-    justify-content: space-between;
+
     align-items: stretch;
-    pointer-events: none;
-    z-index: 1;
+
   }
-  
-  /* Personnage gauche - Zoomé à 140% pour masquer le texte de l'image */
+
+  /* Personnage gauche */
+
   .hero-char-left {
-    width: 35%;
-    height: 100%;
-    background: url('https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-57144c8d-fd8d-440e-80c2-a198611d6734.jpg') left center / 140% no-repeat;
-    opacity: 0.5;
+
+    width: 22%;
+
+    background: url(https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-57144c8d-fd8d-440e-80c2-a198611d6734.jpg) left center / cover no-repeat;
+
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+
   }
-  
-  /* Personnage droite - Zoomé et décalé pour masquer le texte "BORDERLAND" de l'image d'origine */
+
+  /* Personnage droite — même image flippée horizontalement */
+
   .hero-char-right {
-    width: 35%;
-    height: 100%;
-    background: url('https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-57144c8d-fd8d-440e-80c2-a198611d6734.jpg') right center / 140% no-repeat;
+
+    width: 22%;
+
+    margin-left: auto;
+
+    background: url(https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-57144c8d-fd8d-440e-80c2-a198611d6734.jpg) right center / cover no-repeat;
+
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+
     transform: scaleX(-1);
-    opacity: 0.5;
+
   }
+
+
+
+  /* Carte au centre du hero */
+
+  .hero-card {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 80px;
+
+    opacity: 0.6;
+
+  }
+
+
 
   .hero-title {
+
     position: relative;
+
     z-index: 2;
+
     text-align: center;
+
     font-family: 'Press Start 2P', monospace;
+
     line-height: 1.4;
+
     animation: fadeInUp 1s ease 0.3s both;
+
   }
+
   .hero-title .line1 {
+
     font-size: clamp(28px, 5.5vw, 72px);
+
     display: block;
+
     letter-spacing: 0.04em;
+
   }
+
   .hero-title .line2 {
+
     font-size: clamp(22px, 4.2vw, 56px);
+
     display: block;
+
     letter-spacing: 0.04em;
+
   }
+
+
 
   @keyframes fadeInUp {
+
     from { opacity: 0; transform: translateY(30px); }
+
     to   { opacity: 1; transform: translateY(0); }
+
   }
+
+
 
   /* ── SECTION 2 : TEXTE ── */
+
   #description {
+
     min-height: 60vh;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     padding: 80px 80px 80px 160px;
+
     background: #000;
-    position: relative;
-    z-index: 2;
+
   }
+
   .desc-text {
+
     max-width: 560px;
+
     font-size: 16px;
+
     line-height: 2;
+
     color: #fff;
+
     text-align: center;
+
   }
+
   .desc-text strong {
+
     font-family: 'Press Start 2P', monospace;
+
     font-size: 11px;
+
     color: #e50914;
+
     display: block;
+
     margin-bottom: 30px;
+
     letter-spacing: 0.08em;
+
   }
+
+
 
   /* ── SECTION 3 : GRILLE 6 AFFICHES ── */
+
   #affiches {
+
     padding: 60px 80px 100px 160px;
+
     background: #000;
-    position: relative;
-    z-index: 2;
+
   }
+
   .affiches-grid {
+
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
+
     gap: 16px;
+
     max-width: 900px;
+
     margin: 0 auto;
+
   }
+
   .affiche-item {
+
     aspect-ratio: 2/3;
+
     overflow: hidden;
+
     position: relative;
+
     cursor: pointer;
+
   }
+
   .affiche-item img {
+
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
+
     display: block;
+
     transition: transform 0.5s ease, filter 0.3s;
+
   }
+
   .affiche-item:hover img {
+
     transform: scale(1.05);
+
     filter: brightness(1.1);
+
   }
+
   .affiche-item::after {
+
     content: '';
+
     position: absolute;
+
     inset: 0;
+
     border: 1px solid rgba(229,9,20,0);
+
     transition: border-color 0.3s;
+
     pointer-events: none;
+
   }
+
   .affiche-item:hover::after {
+
     border-color: rgba(229,9,20,0.6);
+
   }
+
+
 
   /* ── LIGHTBOX ── */
+
   #lightbox {
+
     display: none;
+
     position: fixed;
+
     inset: 0;
+
     background: rgba(0, 0, 0, 0.92);
+
     z-index: 1000;
+
     align-items: center;
+
     justify-content: center;
+
     cursor: pointer;
+
   }
+
   #lightbox.open { display: flex; }
+
   #lightbox img {
+
     max-height: 90vh;
+
     max-width: 90vw;
+
     object-fit: contain;
+
     box-shadow: 0 0 60px rgba(255, 255, 255, 0.3);
+
     animation: zoomIn 0.3s ease;
+
   }
+
   #lightbox .close-btn {
+
     position: absolute;
+
     top: 20px;
+
     right: 28px;
+
     font-family: 'Press Start 2P', monospace;
+
     font-size: 10px;
+
     color: #fff;
+
     cursor: pointer;
+
     letter-spacing: 0.1em;
+
   }
+
   #lightbox .prev-btn,
+
   #lightbox .next-btn {
+
     position: absolute;
+
     top: 50%;
+
     transform: translateY(-50%);
+
     font-size: 28px;
+
     color: rgba(255,255,255,0.6);
+
     cursor: pointer;
+
     padding: 20px;
+
     transition: color 0.2s;
+
     user-select: none;
+
   }
+
   #lightbox .prev-btn { left: 10px; }
+
   #lightbox .next-btn { right: 10px; }
+
   #lightbox .prev-btn:hover,
+
   #lightbox .next-btn:hover { color: #fff; }
 
+
+
   @keyframes zoomIn {
+
     from { opacity: 0; transform: scale(0.9); }
+
     to   { opacity: 1; transform: scale(1); }
+
   }
+
+
 
   /* ── FOOTER ── */
+
   footer {
+
     border-top: 1px solid #333;
+
     display: grid;
+
     grid-template-columns: 1fr 1px 1fr 1px 1fr;
+
     padding: 40px 60px 40px 160px;
+
     min-height: 100px;
+
     align-items: center;
-    position: relative;
-    z-index: 2;
+
   }
+
   .footer-col {
+
     padding: 0 40px;
+
     font-family: 'Press Start 2P', monospace;
+
     font-size: 7px;
+
     color: #fff;
+
     letter-spacing: 0.05em;
+
     line-height: 1.8;
+
   }
+
   .footer-sep { width: 1px; height: 60px; background: #333; align-self: center; }
+
   footer a { color: #fff; text-decoration: none; }
+
   footer a:hover { color: #e50914; }
 
+
+
   /* ── SCROLL REVEAL ── */
+
   .reveal {
+
     opacity: 0;
+
     transform: translateY(30px);
+
     transition: opacity 0.7s ease, transform 0.7s ease;
+
   }
+
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+
+
   @media (max-width: 768px) {
+
     nav { left: 10px; }
+
     #description { padding: 60px 20px 60px 60px; }
+
     #affiches { padding: 40px 20px 60px 60px; }
+
     .affiches-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
     footer { padding: 30px 20px; grid-template-columns: 1fr; }
+
     .footer-sep { display: none; }
+
     .hero-title .line1 { font-size: 22px; }
+
     .hero-title .line2 { font-size: 18px; }
+
   }
+
 </style>
+
 </head>
+
 <body>
 
+
+
+<!-- NAV -->
+
 <nav>
+
   <a href="/">ACCUEIL</a>
+
   <a href="mailto:theo.legrain@iscom.org">Mail</a>
+
   <a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">Linkedin</a>
+
   <a href="https://readymag.website/u1297180235/5893419/qui-suis-je/" target="_blank">Qui suis-je ?</a>
+
 </nav>
 
+
+
+<!-- SECTION 1 — HERO -->
+
 <section id="hero">
+
   <div class="hero-bg">
+
     <div class="hero-char-left"></div>
+
     <div class="hero-char-right"></div>
+
   </div>
+
   <h1 class="hero-title">
+
     <span class="line1">ALICE IN</span>
+
     <span class="line2">BORDERLAND</span>
+
   </h1>
+
 </section>
+
+
+
+<!-- SECTION 2 — TEXTE -->
 
 <section id="description">
+
   <div class="desc-text reveal">
+
     <strong>6 versions différentes !</strong>
+
     Pour ma part, appréciant beaucoup la série Alice In Borderland et voyant la saison 3 approcher, je me suis dis pourquoi pas créer mes 6 affiches sur cette série.<br><br>
+
     Pour l'inspiration, rien de bien compliqué, l'arrivée de la série étant imminente j'ai pu la regarder dans la foulée et décider de ma ligne directrice, ce sera les jeux présentés dans cette saison 3. Ça tombe bien, il y en a 6 !<br><br>
+
     Pour la ligne conductrice visuelle, j'ai simplement choisi d'utiliser les personnes présent durant cette saison en 1er gros plan.
+
   </div>
+
 </section>
+
+
+
+<!-- SECTION 3 — 6 AFFICHES -->
 
 <section id="affiches">
+
   <div class="affiches-grid reveal">
+
     <div class="affiche-item" data-index="0">
+
       <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-87e46fdc-55b9-44bd-99b9-ed122a8d1ef0.jpg" alt="Affiche Alice 1">
+
     </div>
+
     <div class="affiche-item" data-index="1">
+
       <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-3a29eed5-15c4-4714-9628-66d11b69d81b.jpg" alt="Affiche Alice 2">
+
     </div>
+
     <div class="affiche-item" data-index="2">
+
       <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-83cb3c56-0875-440c-807e-317a11750f5f.jpg" alt="Affiche Alice 3">
+
     </div>
+
     <div class="affiche-item" data-index="3">
+
       <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-a8a35ac6-2b05-422c-b102-edfda9e9aaae.jpg" alt="Affiche Alice 4">
+
     </div>
+
     <div class="affiche-item" data-index="4">
+
       <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-66101ffc-747d-46dd-a89d-05adba3c401f.jpg" alt="Affiche Alice 5">
+
     </div>
+
     <div class="affiche-item" data-index="5">
+
       <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-455e217a-1742-4198-8832-9d25ea554334.jpg" alt="Affiche Alice 6">
+
     </div>
+
   </div>
+
 </section>
 
+
+
+<!-- LIGHTBOX -->
+
 <div id="lightbox">
+
   <span class="close-btn">✕ FERMER</span>
+
   <span class="prev-btn">&#8592;</span>
+
   <img id="lightbox-img" src="" alt="">
+
   <span class="next-btn">&#8594;</span>
+
 </div>
 
+
+
+<!-- FOOTER -->
+
 <footer>
+
   <div class="footer-col"><a href="https://theolegrain.fr">theolegrain.fr</a></div>
+
   <div class="footer-sep"></div>
+
   <div class="footer-col"><a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a></div>
+
   <div class="footer-sep"></div>
+
   <div class="footer-col">2026</div>
+
 </footer>
 
+
+
 <script>
+
+  // ── Scroll reveal ──
+
   const reveals = document.querySelectorAll('.reveal');
+
   const observer = new IntersectionObserver(entries => {
+
     entries.forEach(entry => {
+
       if (entry.isIntersecting) {
+
         entry.target.classList.add('visible');
+
         observer.unobserve(entry.target);
+
       }
+
     });
+
   }, { threshold: 0.1 });
+
   reveals.forEach(el => observer.observe(el));
 
+
+
+  // ── Lightbox ──
+
   const images = [
+
     'https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-87e46fdc-55b9-44bd-99b9-ed122a8d1ef0.jpg',
+
     'https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-3a29eed5-15c4-4714-9628-66d11b69d81b.jpg',
+
     'https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-83cb3c56-0875-440c-807e-317a11750f5f.jpg',
+
     'https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-a8a35ac6-2b05-422c-b102-edfda9e9aaae.jpg',
+
     'https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-66101ffc-747d-46dd-a89d-05adba3c401f.jpg',
+
     'https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-455e217a-1742-4198-8832-9d25ea554334.jpg'
+
   ];
 
+
+
   let currentIndex = 0;
+
   const lightbox = document.getElementById('lightbox');
+
   const lightboxImg = document.getElementById('lightbox-img');
 
+
+
   function openLightbox(index) {
+
     currentIndex = index;
+
     lightboxImg.src = images[index];
+
     lightbox.classList.add('open');
+
     document.body.style.overflow = 'hidden';
+
   }
+
+
 
   function closeLightbox() {
+
     lightbox.classList.remove('open');
+
     document.body.style.overflow = '';
+
   }
+
+
 
   function navigate(dir) {
+
     currentIndex = (currentIndex + dir + images.length) % images.length;
+
     lightboxImg.src = images[currentIndex];
+
   }
 
+
+
   document.querySelectorAll('.affiche-item').forEach(item => {
+
     item.addEventListener('click', () => openLightbox(parseInt(item.dataset.index)));
+
   });
+
+
 
   lightbox.querySelector('.close-btn').addEventListener('click', closeLightbox);
+
   lightbox.querySelector('.prev-btn').addEventListener('click', e => { e.stopPropagation(); navigate(-1); });
+
   lightbox.querySelector('.next-btn').addEventListener('click', e => { e.stopPropagation(); navigate(1); });
+
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
 
+
+
   document.addEventListener('keydown', e => {
+
     if (!lightbox.classList.contains('open')) return;
+
     if (e.key === 'Escape') closeLightbox();
+
     if (e.key === 'ArrowLeft') navigate(-1);
+
     if (e.key === 'ArrowRight') navigate(1);
+
   });
+
 </script>
+
 </body>
-</html>
+
+</html> 
+
