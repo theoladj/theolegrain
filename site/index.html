@@ -1,82 +1,484 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Théo Legrain</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-load-image/5.16.0/load-image.all.min.js"></script>
-<style>
-  :root {
-    --black: #000000;
-    --white: #ffffff;
-    --red: #e03030;
-    --accent: #ff4444;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Théo Legrain</title>
+  
+  <!-- Polices et Bibliothèques -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-load-image/5.16.0/load-image.all.min.js"></script>
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Press Start 2P', monospace;
-    overflow-x: hidden;
-  }
-  a { cursor: pointer; }
+  <style>
+    /* ── VARIABLES & BASES ── */
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --red: #e03030;
+      --accent: #ff4444;
+      --bg: #0a0a0a;
+      --text: #e1e1e1;
+    }
 
-  /* ── FIXED LEFT NAV ── */
-  nav {
-    position: fixed;
-    left: 28px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  nav a {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 7px;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-    white-space: nowrap;
-  }
-  nav a:hover { color: var(--accent); }
+    *, *::before, *::after { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    html { 
+      scroll-behavior: smooth; 
+    }
+    
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Press Start 2P', monospace;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    a { 
+      cursor: pointer; 
+    }
 
-  /* ── SECTIONS ── */
-  section {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 80px 80px 160px;
-    position: relative;
-  }
+    /* ── FIXED LEFT NAV ── */
+    nav {
+      position: fixed;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 7px;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    nav a:hover { color: var(--accent); }
 
-  /* ── SECTION 1: BANKSY HERO ── */
-  <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Theo-Ladj-Portfolio | CSS Design</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+    /* ── SECTIONS GÉNÉRALES ── */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 80px 80px 160px;
+      position: relative;
+    }
+
+    /* ── SECTION 1: BANKSY HERO ── */
+    .noise {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .hero {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .morph-container {
+      position: relative;
+      font-size: clamp(3rem, 15vw, 10rem);
+      font-weight: 700;
+      filter: url(#threshold);
+      user-select: none;
+    }
+
+    .word-rotator {
+      position: relative;
+      height: 1.2em;
+      width: 100%;
+      min-width: 14ch;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .word {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      white-space: nowrap;
+      animation: rotate-words 9s infinite ease-in-out;
+    }
+
+    .word:nth-child(1) { animation-delay: 0s; }
+    .word:nth-child(2) { animation-delay: 3s; }
+    .word:nth-child(3) { animation-delay: 6s; }
+
+    @keyframes rotate-words {
+      0% { opacity: 0; filter: blur(20px); transform: translate(-50%, -50%) scale(0.8); }
+      5% { opacity: 0.5; filter: blur(10px); }
+      15%, 35% { opacity: 1; filter: blur(0px); transform: translate(-50%, -50%) scale(1); }
+      45% { opacity: 0.5; filter: blur(10px); }
+      50%, 100% { opacity: 0; filter: blur(20px); transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    .subtext {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-family: "Space Grotesk", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #888;
+      opacity: 0;
+      animation: fade-up 1s ease-out 1s forwards;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-in {
+      to { opacity: 1; }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fade-in 1s ease-out 2s forwards;
+    }
+
+    .mouse {
+      width: 24px;
+      height: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      position: relative;
+    }
+
+    .wheel {
+      width: 2px;
+      height: 6px;
+      background: #fff;
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      animation: scroll 1.5s infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translate(-50%, 0); opacity: 1; }
+      100% { transform: translate(-50%, 15px); opacity: 0; }
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(18px, 3vw, 34px);
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 50px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── SECTION 2: L'ASTRONAUTE ── */
+    #astronaute {
+      min-height: 100vh;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .cliquable-label {
+      font-size: 7px;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      align-self: flex-start;
+      margin-left: calc(50% - 200px);
+    }
+    .cliquable-label::after {
+      content: '';
+      display: inline-block;
+      width: 80px;
+      height: 1px;
+      background: var(--white);
+    }
+    .astronaute-img {
+      width: 400px;
+      max-width: 80vw;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .astronaute-img:hover { transform: scale(1.02); }
+
+    /* ── SECTION 3: PICTURES ── */
+    #pictures { gap: 0; }
+    .pictures-container {
+      position: relative;
+      display: inline-block;
+    }
+    .pictures-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 200px);
+      grid-template-rows: repeat(2, 240px);
+      gap: 6px;
+    }
+    .pictures-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s, transform 0.3s;
+    }
+    .pictures-wrapper img:hover { transform: scale(1.03); filter: brightness(1.1); }
+    .pictures-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      color: var(--white);
+      pointer-events: none;
+      z-index: 2;
+      letter-spacing: 0.12em;
+      text-shadow: 2px 2px 12px #000, -1px -1px 12px #000, 0 0 20px rgba(0,0,0,0.8);
+      white-space: nowrap;
+    }
+
+    /* ── SECTION 4: AFFICHES DE SÉRIE ── */
+    #affiches { flex-direction: column; }
+    .affiches-title {
+      font-size: clamp(18px, 3vw, 34px);
+      font-style: italic;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 50px;
+      font-family: 'Press Start 2P', monospace;
+      letter-spacing: 0.05em;
+    }
+    .affiche-single {
+      width: 400px;
+      max-width: 85vw;
+      position: relative;
+    }
+    .affiche-single img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .affiche-single:hover img { transform: scale(1.02); }
+
+    /* ── SECTION 5: DESIGNS EN VRAC ── */
+    #designs { flex-direction: column; }
+    .designs-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+      max-width: 900px;
+      width: 100%;
+    }
+    .design-card {
+      aspect-ratio: 1;
+      background: #111;
+      overflow: hidden;
+    }
+    .design-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s, filter 0.3s;
+    }
+    .design-card:hover img { transform: scale(1.08); filter: brightness(1.1); }
+
+    /* ── SECTION 6: VIDÉOS ── */
+    #videos { flex-direction: column; }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 800px;
+      width: 100%;
+    }
+    .video-card {
+      aspect-ratio: 16/9;
+      background: #111;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .video-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .video-card:hover img {
+      transform: scale(1.04);
+      filter: brightness(0.75);
+    }
+    .video-card .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      background: rgba(255,0,0,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .video-card:hover .play-btn {
+      background: rgba(255,0,0,1);
+      transform: translate(-50%, -50%) scale(1.12);
+    }
+    .video-card .play-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+      margin-left: 4px;
+    }
+    .video-card .video-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 6px 8px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      font-size: 6px;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      pointer-events: none;
+    }
+    
+    .tiktok-cta {
+      margin-top: 30px;
+      font-size: 8px;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+    .tiktok-cta a { color: var(--white); text-decoration: none; }
+    .tiktok-cta a:hover { color: var(--accent); }
+
+    /* ── NE CLIQUE PAS ── */
+    #easter {
+      min-height: 40vh;
+      justify-content: center;
+    }
+    .btn-noclique {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      padding: 18px 32px;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      border: 2px solid var(--red);
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-noclique:hover {
+      background: transparent;
+      color: var(--red);
+      transform: scale(1.05);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid #333;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      padding: 40px 60px 40px 160px;
+      min-height: 100px;
+      align-items: center;
+    }
+    .footer-col {
+      padding: 0 40px;
+      font-size: 7px;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      line-height: 1.8;
+    }
+    .footer-sep { width: 1px; height: 60px; background: #333; align-self: center; }
+    footer a { color: var(--white); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .filters {
+      position: absolute;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      nav { left: 10px; }
+      section { padding: 60px 20px 60px 60px; }
+      .pictures-wrapper { grid-template-columns: repeat(3, 110px); grid-template-rows: repeat(2, 130px); }
+      .designs-grid { grid-template-columns: repeat(3, 1fr); }
+      .videos-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { padding: 30px 20px; grid-template-columns: 1fr; }
+      .footer-sep { display: none; }
+      .cliquable-label { margin-left: 0; }
+      .morph-container { font-size: 15vw; }
+    }
+  </style>
 </head>
-
 <body>
+
   <div class="noise"></div>
 
-  <!-- Threshold Filter for Morph Effect -->
+  <!-- SVG Filters for Morph Effect -->
   <svg class="filters">
     <defs>
       <filter id="threshold">
-        <!-- Alpha thresholding -->
         <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
                     0 1 0 0 0
                     0 0 1 0 0
@@ -86,6 +488,14 @@
     </defs>
   </svg>
 
+  <!-- NAV -->
+  <nav>
+    <a href="mailto:theo.legrain@iscom.org">Mail</a>
+    <a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">Linkedin</a>
+    <a href="https://readymag.website/u1297180235/5893419/qui-suis-je/" target="_blank">Qui suis-je ?</a>
+  </nav>
+
+  <!-- SECTION 1 — BANKSY HERO -->
   <section class="hero">
     <div class="morph-container">
       <div class="word-rotator">
@@ -103,766 +513,199 @@
     </div>
   </section>
 
- 
+  <!-- SECTION 2 — L'ASTRONAUTE -->
+  <section id="astronaute">
+    <h2 class="section-title reveal">L'ASTRONAUTE</h2>
+    <a href="/astronaute/" target="_blank">
+      <img class="astronaute-img reveal" src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-d2496fb0-bb82-4fc0-a7c9-1754f6bfe685.jpg?w=807" alt="L'Astronaute — projet Théo Legrain" />
+    </a>
+  </section>
 
-  /* ── SECTION TITLES ── */
-  .section-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: clamp(18px, 3vw, 34px);
-    color: var(--white);
-    text-align: center;
-    margin-bottom: 50px;
-    letter-spacing: 0.08em;
-  }
-
-  /* ── SECTION 2: L'ASTRONAUTE ── */
-  #astronaute {
-    min-height: 100vh;
-    flex-direction: column;
-    gap: 30px;
-  }
-  .cliquable-label {
-    font-size: 7px;
-    letter-spacing: 0.2em;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    align-self: flex-start;
-    margin-left: calc(50% - 200px);
-  }
-  .cliquable-label::after {
-    content: '';
-    display: inline-block;
-    width: 80px;
-    height: 1px;
-    background: var(--white);
-  }
-  .astronaute-img {
-    width: 400px;
-    max-width: 80vw;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-  .astronaute-img:hover { transform: scale(1.02); }
-
-  /* ── SECTION 3: PICTURES ── */
-  #pictures { gap: 0; }
-  .pictures-container {
-    position: relative;
-    display: inline-block;
-  }
-  .pictures-wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 200px);
-    grid-template-rows: repeat(2, 240px);
-    gap: 6px;
-  }
-  .pictures-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: filter 0.3s, transform 0.3s;
-  }
-  .pictures-wrapper img:hover { transform: scale(1.03); filter: brightness(1.1); }
-  .pictures-label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 28px;
-    color: var(--white);
-    pointer-events: none;
-    z-index: 2;
-    letter-spacing: 0.12em;
-    text-shadow: 2px 2px 12px #000, -1px -1px 12px #000, 0 0 20px rgba(0,0,0,0.8);
-    white-space: nowrap;
-  }
-
-  /* ── SECTION 4: AFFICHES DE SÉRIE ── */
-  #affiches { flex-direction: column; }
-  .affiches-title {
-    font-size: clamp(18px, 3vw, 34px);
-    font-style: italic;
-    color: var(--white);
-    text-align: center;
-    margin-bottom: 50px;
-    font-family: 'Press Start 2P', monospace;
-    letter-spacing: 0.05em;
-  }
-  .affiche-single {
-    width: 400px;
-    max-width: 85vw;
-    position: relative;
-  }
-  .affiche-single img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.4s;
-  }
-  .affiche-single:hover img { transform: scale(1.02); }
-  .affiche-cliquable {
-    font-size: 7px;
-    letter-spacing: 0.2em;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    align-self: flex-start;
-    margin-top: -10px;
-    margin-left: 0;
-  }
-  .affiche-cliquable::after {
-    content: '';
-    display: inline-block;
-    width: 80px;
-    height: 1px;
-    background: var(--white);
-  }
-
-  /* ── SECTION 5: DESIGNS EN VRAC ── */
-  #designs { flex-direction: column; }
-  .designs-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 6px;
-    max-width: 900px;
-    width: 100%;
-  }
-  .design-card {
-    aspect-ratio: 1;
-    background: #111;
-    overflow: hidden;
-  }
-  .design-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s, filter 0.3s;
-  }
-  .design-card:hover img { transform: scale(1.08); filter: brightness(1.1); }
-
-  /* ── SECTION 6: VIDÉOS ── */
-  #videos { flex-direction: column; }
-  .videos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    max-width: 800px;
-    width: 100%;
-  }
-  .video-card {
-    aspect-ratio: 16/9;
-    background: #111;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-  }
-  .video-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s, filter 0.3s;
-  }
-  .video-card:hover img {
-    transform: scale(1.04);
-    filter: brightness(0.75);
-  }
-  .video-card .play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 52px;
-    height: 52px;
-    background: rgba(255,0,0,0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    transition: transform 0.2s, background 0.2s;
-  }
-  .video-card:hover .play-btn {
-    background: rgba(255,0,0,1);
-    transform: translate(-50%, -50%) scale(1.12);
-  }
-  .video-card .play-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: white;
-    margin-left: 4px;
-  }
-  .video-card .video-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 6px 8px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.85));
-    font-size: 6px;
-    color: var(--white);
-    letter-spacing: 0.05em;
-    pointer-events: none;
-  }
-  .video-card iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  .tiktok-cta {
-    margin-top: 30px;
-    font-size: 8px;
-    color: var(--white);
-    letter-spacing: 0.08em;
-    text-align: center;
-  }
-  .tiktok-cta a { color: var(--white); text-decoration: none; }
-  .tiktok-cta a:hover { color: var(--accent); }
-
-  /* ── NE CLIQUE PAS ── */
-  #easter {
-    min-height: 40vh;
-    justify-content: center;
-  }
-  .btn-noclique {
-    display: inline-block;
-    background: var(--red);
-    color: var(--white);
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    padding: 18px 32px;
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    border: 2px solid var(--red);
-    transition: background 0.2s, color 0.2s, transform 0.15s;
-  }
-  .btn-noclique:hover {
-    background: transparent;
-    color: var(--red);
-    transform: scale(1.05);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid #333;
-    display: grid;
-    grid-template-columns: 1fr 1px 1fr 1px 1fr;
-    padding: 40px 60px 40px 160px;
-    min-height: 100px;
-    align-items: center;
-  }
-  .footer-col {
-    padding: 0 40px;
-    font-size: 7px;
-    color: var(--white);
-    letter-spacing: 0.05em;
-    line-height: 1.8;
-  }
-  .footer-sep { width: 1px; height: 60px; background: #333; align-self: center; }
-  footer a { color: var(--white); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 768px) {
-    nav { left: 10px; }
-    section { padding: 60px 20px 60px 60px; }
-    #hero { padding: 60px 20px 60px 60px; }
-    .pictures-wrapper { grid-template-columns: repeat(3, 110px); grid-template-rows: repeat(2, 130px); }
-    .designs-grid { grid-template-columns: repeat(3, 1fr); }
-    .videos-grid { grid-template-columns: repeat(2, 1fr); }
-    footer { padding: 30px 20px; grid-template-columns: 1fr; }
-    .footer-sep { display: none; }
-    .cliquable-label { margin-left: 0; }
-  }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <a href="mailto:theo.legrain@iscom.org">Mail</a>
-  <a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">Linkedin</a>
-  <a href="https://readymag.website/u1297180235/5893419/qui-suis-je/" target="_blank">Qui suis-je ?</a>
-</nav>
-
-<!-- SECTION 1 — BANKSY HERO -->
-:root {
-  --bg: #0a0a0a;
-  --text: #e1e1e1;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: "Space Grotesk", sans-serif;
-  overflow-x: hidden;
-  min-height: 100vh;
-}
-
-/* Noise Texture */
-.noise {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* Hero Section */
-.hero {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-
-/* Morph Effect: Blur + Threshold */
-.morph-container {
-  position: relative;
-  font-size: clamp(3rem, 15vw, 10rem);
-  font-weight: 700;
-  filter: url(#threshold);
-  user-select: none;
-}
-
-.word-rotator {
-  position: relative;
-  height: 1.2em;
-  width: 100%;
-  min-width: 14ch;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.word {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  color: var(--text);
-  white-space: nowrap;
-  animation: rotate-words 9s infinite ease-in-out;
-}
-
-.word:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.word:nth-child(2) {
-  animation-delay: 3s;
-}
-
-.word:nth-child(3) {
-  animation-delay: 6s;
-}
-
-@keyframes rotate-words {
-  0% {
-    opacity: 0;
-    filter: blur(20px);
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-
-  5% {
-    opacity: 0.5;
-    filter: blur(10px);
-  }
-
-  15%,
-  35% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  45% {
-    opacity: 0.5;
-    filter: blur(10px);
-  }
-
-  50%,
-  100% {
-    opacity: 0;
-    filter: blur(20px);
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-}
-
-/* Subtext */
-.subtext {
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #888;
-  opacity: 0;
-  animation: fade-up 1s ease-out 1s forwards;
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  opacity: 0;
-  animation: fade-in 1s ease-out 2s forwards;
-}
-
-.mouse {
-  width: 24px;
-  height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  position: relative;
-}
-
-.wheel {
-  width: 2px;
-  height: 6px;
-  background: #fff;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-  animation: scroll 1.5s infinite;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(-50%, 15px);
-    opacity: 0;
-  }
-}
-
-/* Content Section */
-.content {
-  padding: 8rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.content-text h2 {
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  line-height: 1.1;
-}
-
-.content-text p {
-  font-size: 1.1rem;
-  color: #aaa;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 1px;
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* Subtle hover gradient */
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 255, 255, 0.06),
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-.card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.filters {
-  position: absolute;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .content {
-    grid-template-columns: 1fr;
-    padding: 4rem 1.5rem;
-  }
-
-  .morph-container {
-    font-size: 15vw;
-  }
-}
-
-<!-- SECTION 2 — L'ASTRONAUTE -->
-<section id="astronaute">
-  <h2 class="section-title reveal">L'ASTRONAUTE</h2>
-  <a href="/astronaute/" target="_blank">
-    <img
-      class="astronaute-img reveal"
-      src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-d2496fb0-bb82-4fc0-a7c9-1754f6bfe685.jpg?w=807"
-      alt="L'Astronaute — projet Théo Legrain"
-    />
-  </a>
-</section>
-
-<!-- SECTION 3 — PICTURES -->
-<section id="pictures">
-  <div class="pictures-container reveal">
-    <div class="pictures-wrapper">
-      <!-- Row 1 -->
-      <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-9eb5b535-cea9-487d-b8f3-364ead59f26f.jpg?w=537" alt="picture 1">
-      <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-aecb987c-bfca-4e74-adf3-0355f6c0edf5.jpg?w=537" alt="picture 2">
-      <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-0fc17ac1-7f0c-4e66-88e6-b1705f1d9217.jpg?w=537" alt="picture 3">
-      <!-- Row 2 -->
-      <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-4addb6f4-8b58-49b0-8df8-7721109bfa52.jpg?w=537" alt="picture 4">
-      <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-deb5851a-ac90-4586-9251-d227510b0459.jpg?w=537" alt="picture 5">
-      <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-fdc816b0-6d89-4775-b168-e8c55f684c0c.jpg?w=537" alt="picture 6">
+  <!-- SECTION 3 — PICTURES -->
+  <section id="pictures">
+    <div class="pictures-container reveal">
+      <div class="pictures-wrapper">
+        <!-- Row 1 -->
+        <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-9eb5b535-cea9-487d-b8f3-364ead59f26f.jpg?w=537" alt="picture 1">
+        <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-aecb987c-bfca-4e74-adf3-0355f6c0edf5.jpg?w=537" alt="picture 2">
+        <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-0fc17ac1-7f0c-4e66-88e6-b1705f1d9217.jpg?w=537" alt="picture 3">
+        <!-- Row 2 -->
+        <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-4addb6f4-8b58-49b0-8df8-7721109bfa52.jpg?w=537" alt="picture 4">
+        <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-deb5851a-ac90-4586-9251-d227510b0459.jpg?w=537" alt="picture 5">
+        <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-fdc816b0-6d89-4775-b168-e8c55f684c0c.jpg?w=537" alt="picture 6">
+      </div>
+      <div class="pictures-label">PICTURES</div>
     </div>
-    <div class="pictures-label">PICTURES</div>
-  </div>
-</section>
+  </section>
 
-<!-- SECTION 4 — AFFICHES DE SÉRIE -->
-<section id="affiches">
-  <h2 class="affiches-title reveal">AFFICHES DE SÉRIE</h2>
-  <div class="affiche-single reveal">
-    <a href="/alice/" target="_blank">
-      <img
-        src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-e949b127-6fa9-4e71-9cc3-0b33f77366ac.jpg?w=807"
-        alt="Alice in Borderland III affiche"
-      />
-    </a>
-  </div>
-</section>
+  <!-- SECTION 4 — AFFICHES DE SÉRIE -->
+  <section id="affiches">
+    <h2 class="affiches-title reveal">AFFICHES DE SÉRIE</h2>
+    <div class="affiche-single reveal">
+      <a href="/alice/" target="_blank">
+        <img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-e949b127-6fa9-4e71-9cc3-0b33f77366ac.jpg?w=807" alt="Alice in Borderland III affiche" />
+      </a>
+    </div>
+  </section>
 
-<!-- SECTION 5 — DESIGNS EN VRAC -->
-<section id="designs">
-  <h2 class="section-title reveal">DESIGNS EN VRAC</h2>
-  <div class="designs-grid reveal">
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-34ad6c82-7c70-422c-ab47-d98eca0de6e8.jpg?w=384" alt="design 1"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-de5ebd98-70d0-4cf0-b611-15f986b0902c.png?w=384" alt="design 2"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-6a8844cc-fa26-4db3-a157-7b1976a7d509.jpg?w=384" alt="design 3"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-ba8a461b-55ad-46b4-bf88-ae0d28451767.jpg?w=384" alt="design 4"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-df4de2ec-abd0-472d-800d-c05a4c9deef7.jpg?w=384" alt="design 5"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-b9616468-a539-49fb-94d1-06e61cb5e4c8.jpg?w=384" alt="design 6"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-3c94627b-196c-4f5a-9178-8f2420b8f103.jpg?w=384" alt="design 7"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-8f6b090a-e6ce-4aff-b9ee-bc24e00558b5.jpg?w=384" alt="design 8"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-b5fbb7a4-f36d-4a37-9736-04dfe7752b16.png?w=384" alt="design 9"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-23d9686c-908c-432e-a1e0-eb79c1d0e1d2.jpg?w=384" alt="design 10"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-67b53dd9-d16d-456a-b948-8cf5455badba.jpg?w=384" alt="design 11"></div>
-    <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-d364aa40-5d1f-41f5-9038-353ea9b44721.jpg?w=384" alt="design 12"></div>
-  </div>
-</section>
+  <!-- SECTION 5 — DESIGNS EN VRAC -->
+  <section id="designs">
+    <h2 class="section-title reveal">DESIGNS EN VRAC</h2>
+    <div class="designs-grid reveal">
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-34ad6c82-7c70-422c-ab47-d98eca0de6e8.jpg?w=384" alt="design 1"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-de5ebd98-70d0-4cf0-b611-15f986b0902c.png?w=384" alt="design 2"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-6a8844cc-fa26-4db3-a157-7b1976a7d509.jpg?w=384" alt="design 3"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-ba8a461b-55ad-46b4-bf88-ae0d28451767.jpg?w=384" alt="design 4"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-df4de2ec-abd0-472d-800d-c05a4c9deef7.jpg?w=384" alt="design 5"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-b9616468-a539-49fb-94d1-06e61cb5e4c8.jpg?w=384" alt="design 6"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-3c94627b-196c-4f5a-9178-8f2420b8f103.jpg?w=384" alt="design 7"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-8f6b090a-e6ce-4aff-b9ee-bc24e00558b5.jpg?w=384" alt="design 8"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-b5fbb7a4-f36d-4a37-9736-04dfe7752b16.png?w=384" alt="design 9"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-23d9686c-908c-432e-a1e0-eb79c1d0e1d2.jpg?w=384" alt="design 10"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-67b53dd9-d16d-456a-b948-8cf5455badba.jpg?w=384" alt="design 11"></div>
+      <div class="design-card"><img src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-d364aa40-5d1f-41f5-9038-353ea9b44721.jpg?w=384" alt="design 12"></div>
+    </div>
+  </section>
 
-<!-- SECTION 6 — MONTAGES VIDÉOS -->
-<section id="videos">
-  <h2 class="section-title reveal">MONTAGES VIDÉOS</h2>
-  <div class="videos-grid reveal">
+  <!-- SECTION 6 — MONTAGES VIDÉOS -->
+  <section id="videos">
+    <h2 class="section-title reveal">MONTAGES VIDÉOS</h2>
+    <div class="videos-grid reveal">
+      <a class="video-card" href="https://youtu.be/RA3VUYPyogI" target="_blank">
+        <img src="https://img.youtube.com/vi/RA3VUYPyogI/mqdefault.jpg" alt="Alice in Borderland">
+        <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="video-title">Alice in Borderland</div>
+      </a>
+      <a class="video-card" href="https://youtu.be/spE--JL8lb4" target="_blank">
+        <img src="https://img.youtube.com/vi/spE--JL8lb4/mqdefault.jpg" alt="SnowFall Edit.1">
+        <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="video-title">SnowFall Edit.1</div>
+      </a>
+      <a class="video-card" href="https://youtu.be/cBNGgwVbF9U" target="_blank">
+        <img src="https://img.youtube.com/vi/cBNGgwVbF9U/mqdefault.jpg" alt="Edit La Haine.1">
+        <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="video-title">Edit La Haine.1</div>
+      </a>
+      <a class="video-card" href="https://youtu.be/ZyKSt_rmARA" target="_blank">
+        <img src="https://img.youtube.com/vi/ZyKSt_rmARA/mqdefault.jpg" alt="Snowfall Edit.2">
+        <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="video-title">Snowfall Edit.2</div>
+      </a>
+      <a class="video-card" href="https://youtu.be/dW-Kw6bwmqk" target="_blank">
+        <img src="https://img.youtube.com/vi/dW-Kw6bwmqk/mqdefault.jpg" alt="Spiderman Edit.1">
+        <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="video-title">Spiderman Edit.1</div>
+      </a>
+      <a class="video-card" href="https://youtu.be/G8lAkYTALOk" target="_blank">
+        <img src="https://img.youtube.com/vi/G8lAkYTALOk/mqdefault.jpg" alt="Snowfall Edit.3">
+        <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="video-title">Snowfall Edit.3</div>
+      </a>
+    </div>
+    <p class="tiktok-cta reveal">
+      plus de montages sur tiktok <a href="https://www.tiktok.com/@theoladj" target="_blank">@theoladj</a>
+    </p>
+  </section>
 
-    <a class="video-card" href="https://youtu.be/RA3VUYPyogI" target="_blank">
-      <img src="https://img.youtube.com/vi/RA3VUYPyogI/mqdefault.jpg" alt="Alice in Borderland">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <div class="video-title">Alice in Borderland</div>
-    </a>
+  <!-- NE CLIQUE PAS -->
+  <section id="easter">
+    <a class="btn-noclique reveal" href="https://www.youtube.com/watch?v=Aq5WXmQQooo" target="_blank">NE CLIQUE PAS</a>
+  </section>
 
-    <a class="video-card" href="https://youtu.be/spE--JL8lb4" target="_blank">
-      <img src="https://img.youtube.com/vi/spE--JL8lb4/mqdefault.jpg" alt="SnowFall Edit.1">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <div class="video-title">SnowFall Edit.1</div>
-    </a>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-col"><a href="https://theolegrain.fr">theolegrain.fr</a></div>
+    <div class="footer-sep"></div>
+    <div class="footer-col"><a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a></div>
+    <div class="footer-sep"></div>
+    <div class="footer-col">2026</div>
+  </footer>
 
-    <a class="video-card" href="https://youtu.be/cBNGgwVbF9U" target="_blank">
-      <img src="https://img.youtube.com/vi/cBNGgwVbF9U/mqdefault.jpg" alt="Edit La Haine.1">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <div class="video-title">Edit La Haine.1</div>
-    </a>
+  <!-- SCRIPT LOGIQUE ACCUEIL -->
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
 
-    <a class="video-card" href="https://youtu.be/ZyKSt_rmARA" target="_blank">
-      <img src="https://img.youtube.com/vi/ZyKSt_rmARA/mqdefault.jpg" alt="Snowfall Edit.2">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <div class="video-title">Snowfall Edit.2</div>
-    </a>
+    // NE CLIQUE PAS wobble
+    const btn = document.querySelector('.btn-noclique');
+    let wobbleInterval;
+    btn.addEventListener('mouseenter', () => {
+      let count = 0;
+      wobbleInterval = setInterval(() => {
+        btn.style.transform = count % 2 === 0 ? 'rotate(-1.5deg) scale(1.05)' : 'rotate(1.5deg) scale(1.05)';
+        count++;
+        if (count > 6) { clearInterval(wobbleInterval); btn.style.transform = 'scale(1.05)'; }
+      }, 80);
+    });
+    btn.addEventListener('mouseleave', () => {
+      clearInterval(wobbleInterval);
+      btn.style.transform = '';
+    });
 
-    <a class="video-card" href="https://youtu.be/dW-Kw6bwmqk" target="_blank">
-      <img src="https://img.youtube.com/vi/dW-Kw6bwmqk/mqdefault.jpg" alt="Spiderman Edit.1">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <div class="video-title">Spiderman Edit.1</div>
-    </a>
+    // Nav hover glow
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('mouseenter', () => link.style.textShadow = '0 0 8px rgba(255,255,255,0.6)');
+      link.addEventListener('mouseleave', () => link.style.textShadow = '');
+    });
+  </script>
 
-    <a class="video-card" href="https://youtu.be/G8lAkYTALOk" target="_blank">
-      <img src="https://img.youtube.com/vi/G8lAkYTALOk/mqdefault.jpg" alt="Snowfall Edit.3">
-      <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      <div class="video-title">Snowfall Edit.3</div>
-    </a>
+  <!-- SCRIPT ANIMATION BANKSY -->
+  <script>
+    (function() {
+      let shredding = null;
+      let dropping = null;
 
-  </div>
-  <p class="tiktok-cta reveal">
-    plus de montages sur tiktok <a href="https://www.tiktok.com/@theoladj" target="_blank">@theoladj</a>
-  </p>
-</section>
-
-<!-- NE CLIQUE PAS -->
-<section id="easter">
-  <a class="btn-noclique reveal" href="https://www.youtube.com/watch?v=Aq5WXmQQooo" target="_blank">NE CLIQUE PAS</a>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-col"><a href="https://theolegrain.fr">theolegrain.fr</a></div>
-  <div class="footer-sep"></div>
-  <div class="footer-col"><a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a></div>
-  <div class="footer-sep"></div>
-  <div class="footer-col">2026</div>
-</footer>
-
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+      function shred() {
+        shredding = anime({
+          targets: '#original',
+          height: 0,
+          duration: 10000,
+          easing: 'linear'
+        });
+        dropping = anime({
+          targets: '#painting',
+          translateY: '101%',
+          duration: 10000,
+          easing: 'linear'
+        });
       }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
 
-  // NE CLIQUE PAS wobble
-  const btn = document.querySelector('.btn-noclique');
-  let wobbleInterval;
-  btn.addEventListener('mouseenter', () => {
-    let count = 0;
-    wobbleInterval = setInterval(() => {
-      btn.style.transform = count % 2 === 0 ? 'rotate(-1.5deg) scale(1.05)' : 'rotate(1.5deg) scale(1.05)';
-      count++;
-      if (count > 6) { clearInterval(wobbleInterval); btn.style.transform = 'scale(1.05)'; }
-    }, 80);
-  });
-  btn.addEventListener('mouseleave', () => {
-    clearInterval(wobbleInterval);
-    btn.style.transform = '';
-  });
+      function resetAndShred(url) {
+        if (shredding) shredding.pause();
+        if (dropping) dropping.pause();
 
-  // Nav hover glow
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('mouseenter', () => link.style.textShadow = '0 0 8px rgba(255,255,255,0.6)');
-    link.addEventListener('mouseleave', () => link.style.textShadow = '');
-  });
-</script>
-<script>
-// ── BANKSY WIDGET ──
-(function() {
-  let shredding = null;
-  let dropping = null;
+        const originalEl = document.getElementById('original');
+        if (originalEl) {
+          originalEl.style.backgroundImage = `url(${url})`;
+          originalEl.style.height = '100%';
+        }
+        
+        Array.from(document.getElementsByClassName('shred')).forEach(el => {
+          el.style.backgroundImage = `url(${url})`;
+        });
+        
+        const paintingEl = document.getElementById('painting');
+        if (paintingEl) paintingEl.style.transform = 'translateY(0)';
+        
+        shred();
+      }
 
-  function shred() {
-    shredding = anime({
-      targets: '#original',
-      height: 0,
-      duration: 10000,
-      easing: 'linear'
-    });
-    dropping = anime({
-      targets: '#painting',
-      translateY: '101%',
-      duration: 10000,
-      easing: 'linear'
-    });
-  }
-
-  function resetAndShred(url) {
-    if (shredding) shredding.pause();
-    if (dropping) dropping.pause();
-
-    document.getElementById('original').style.backgroundImage = `url(${url})`;
-    Array.from(document.getElementsByClassName('shred')).forEach(el => {
-      el.style.backgroundImage = `url(${url})`;
-    });
-    document.getElementById('original').style.height = '100%';
-    document.getElementById('painting').style.transform = 'translateY(0)';
-    shred();
-  }
-
-  // Image fixe — changement désactivé
-
-  // Auto-start on load
-  window.addEventListener('load', function() { shred(); });
-})();
-</script>
+      window.addEventListener('load', function() { 
+        // Lancer l'animation uniquement si les éléments cibles existent dans le DOM
+        if(document.getElementById('original')) {
+          shred(); 
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
