@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qui suis-je – Théo Legrain</title>
+  <style>
+    /* ── Fonts ── */
+    @font-face {
+      font-family: "Druk Wide";
+      src: url("https://c-p.rmcdn.net/hosted-fonts/typetoday/DrukWideCy-Super-Web.woff2") format("woff2"),
+           url("https://c-p.rmcdn.net/hosted-fonts/typetoday/DrukWideCy-Super-Web.woff") format("woff");
+      font-style: normal;
+      font-weight: 900;
+    }
+    @font-face {
+      font-family: "Druk Condensed";
+      src: url("https://c-p.rmcdn.net/hosted-fonts/typetoday/DrukCondCy-Super-Web.woff2") format("woff2"),
+           url("https://c-p.rmcdn.net/hosted-fonts/typetoday/DrukCondCy-Super-Web.woff") format("woff");
+      font-style: normal;
+      font-weight: 800;
+    }
+    @font-face {
+      font-family: Graphik;
+      src: url("https://c-p.rmcdn.net/hosted-fonts/typetoday/GraphikLC-Regular-Web.woff2") format("woff2"),
+           url("https://c-p.rmcdn.net/hosted-fonts/typetoday/GraphikLC-Regular-Web.woff") format("woff");
+      font-style: normal;
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: Graphik;
+      src: url("https://c-p.rmcdn.net/hosted-fonts/typetoday/GraphikLC-Medium-Web.woff2") format("woff2"),
+           url("https://c-p.rmcdn.net/hosted-fonts/typetoday/GraphikLC-Medium-Web.woff") format("woff");
+      font-style: normal;
+      font-weight: 500;
+    }
+    @font-face {
+      font-family: Graphik;
+      src: url("https://c-p.rmcdn.net/hosted-fonts/typetoday/GraphikLC-Bold-Web.woff2") format("woff2"),
+           url("https://c-p.rmcdn.net/hosted-fonts/typetoday/GraphikLC-Bold-Web.woff") format("woff");
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; background: #000; color: #fff; font-family: Graphik, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ══════════════════════════════════════════
+       SIDEBAR FIXE (gauche)
+    ══════════════════════════════════════════ */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 130px;
+      height: 100vh;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 28px;
+    }
+
+    .sidebar .nav-top {
+      font-family: "Druk Wide", sans-serif;
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .sidebar .nav-bottom {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-family: Graphik, sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: #fff;
+    }
+    .sidebar .nav-bottom a:hover { text-decoration: underline; }
+
+    /* ══════════════════════════════════════════
+       SECTION 1 — HERO
+    ══════════════════════════════════════════ */
+    .section-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 560px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    /* Photo centrée */
+    .hero-photo {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: auto;
+      max-width: 60%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    /* Nom – grand titre en bas à gauche */
+    .hero-name {
+      position: absolute;
+      bottom: 18%;
+      left: 5%;
+      font-family: "Druk Wide", sans-serif;
+      font-weight: 900;
+      font-size: clamp(52px, 8vw, 110px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: #fff;
+      z-index: 10;
+    }
+
+    /* Email – haut à droite */
+    .hero-email {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: translateY(-50%);
+      font-family: "Druk Wide", sans-serif;
+      font-weight: 900;
+      font-size: clamp(11px, 1.5vw, 20px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      z-index: 10;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 2 — LOGICIELS
+    ══════════════════════════════════════════ */
+    .section-tools {
+      background: #000;
+      padding: 80px 130px 80px 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section-tools h2 {
+      font-family: Graphik, sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 60px;
+      align-self: flex-start;
+      margin-left: 0;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 130px);
+      grid-template-rows: repeat(2, 130px);
+      gap: 24px;
+      justify-content: center;
+    }
+
+    /* Ligne du bas : 1 icône centrée */
+    .tools-grid .tool-last {
+      grid-column: 2 / 4;
+      width: 130px;
+      justify-self: center;
+    }
+
+    .tool-icon {
+      width: 130px;
+      height: 130px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .tool-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 24px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION 3 — TEXTE BIO
+    ══════════════════════════════════════════ */
+    .section-bio {
+      background: #000;
+      padding: 80px 160px 100px 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bio-text {
+      max-width: 680px;
+      font-family: Graphik, sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.55;
+      text-align: center;
+      color: #fff;
+    }
+    .bio-text p { margin-bottom: 1.4em; }
+    .bio-text p:last-of-type { margin-bottom: 0; }
+
+    /* ══════════════════════════════════════════
+       SECTION 4 — VOIR MON CV
+    ══════════════════════════════════════════ */
+    .section-cv {
+      background: #000;
+      padding: 80px 0 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cv-link {
+      font-family: "Druk Condensed", sans-serif;
+      font-weight: 800;
+      font-size: clamp(48px, 9vw, 130px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.18);
+      transition: color 0.3s ease;
+      text-align: center;
+    }
+    .cv-link:hover { color: rgba(255, 255, 255, 0.9); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: #000;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 160px;
+      font-family: Graphik, sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: #fff;
+    }
+
+    footer .footer-sep {
+      width: 1px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    footer span { flex: 1; text-align: center; }
+    footer span:first-child { text-align: left; }
+    footer span:last-child  { text-align: right; }
+
+    /* ══════════════════════════════════════════
+       ADOBE ICON COLORS (SVG inline fallbacks)
+    ══════════════════════════════════════════ */
+    .bg-ps { background: #001e36; }
+    .bg-pr { background: #1b002f; }
+    .bg-lr { background: #001a34; }
+    .bg-ai { background: #310000; }
+    .bg-id { background: #1d002e; }
+
+    .tool-letter {
+      font-family: "Druk Wide", sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      letter-spacing: -0.02em;
+    }
+    .col-ps { color: #31c5f0; }
+    .col-pr { color: #9999ff; }
+    .col-lr { color: #26c0f0; }
+    .col-ai { color: #ff9a00; }
+    .col-id { color: #ff4488; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Sidebar fixe ── -->
+  <nav class="sidebar">
+    <a href="https://readymag.website/u1297180235/5893419/" class="nav-top">Accueil</a>
+    <div class="nav-bottom">
+      <a href="mailto:theo.legrain@iscom.org">Mail</a>
+      <a href="https://www.linkedin.com/in/théo-legrain-5241a1336/" target="_blank">Linkedin</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════ -->
+  <section class="section-hero">
+    <img
+      class="hero-photo"
+      src="https://i-p.rmcdn.net/68f8e6a30ed79b64ce4ba1c4/5893419/image-b4654151-7664-451a-b0d9-93740096814f.jpg?e=webp"
+      alt="Théo Legrain"
+    />
+    <div class="hero-name">THEO<br>LEGRAIN</div>
+    <div class="hero-email">THEO.LEGRAIN@ISCOM.ORG</div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 2 — LOGICIELS UTILISÉS
+  ══════════════════════════════════════════ -->
+  <section class="section-tools">
+    <h2>Logiciels utilisées</h2>
+    <div class="tools-grid">
+      <!-- Ligne 1 : Ps · Pr · Lr · Ai -->
+      <div class="tool-icon bg-ps">
+        <svg viewBox="0 0 88 88" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
+          <rect width="88" height="88" rx="14" fill="#001e36"/>
+          <text x="50%" y="62" text-anchor="middle" font-family="'Druk Wide',sans-serif" font-weight="900" font-size="42" fill="#31c5f0">Ps</text>
+        </svg>
+      </div>
+      <div class="tool-icon bg-pr">
+        <svg viewBox="0 0 88 88" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
+          <rect width="88" height="88" rx="14" fill="#1b002f"/>
+          <text x="50%" y="62" text-anchor="middle" font-family="'Druk Wide',sans-serif" font-weight="900" font-size="42" fill="#9999ff">Pr</text>
+        </svg>
+      </div>
+      <div class="tool-icon bg-lr">
+        <svg viewBox="0 0 88 88" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
+          <rect width="88" height="88" rx="14" fill="#001a34"/>
+          <text x="50%" y="62" text-anchor="middle" font-family="'Druk Wide',sans-serif" font-weight="900" font-size="42" fill="#26c0f0">Lr</text>
+        </svg>
+      </div>
+      <div class="tool-icon bg-ai">
+        <svg viewBox="0 0 88 88" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
+          <rect width="88" height="88" rx="14" fill="#310000"/>
+          <text x="50%" y="62" text-anchor="middle" font-family="'Druk Wide',sans-serif" font-weight="900" font-size="42" fill="#ff9a00">Ai</text>
+        </svg>
+      </div>
+      <!-- Ligne 2 : Id centré -->
+      <div class="tool-icon bg-id tool-last">
+        <svg viewBox="0 0 88 88" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
+          <rect width="88" height="88" rx="14" fill="#1d002e"/>
+          <text x="50%" y="62" text-anchor="middle" font-family="'Druk Wide',sans-serif" font-weight="900" font-size="42" fill="#ff4488">Id</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 3 — BIO
+  ══════════════════════════════════════════ -->
+  <section class="section-bio">
+    <div class="bio-text">
+      <p>
+        Je m'appelle Théo Legrain, j'ai 22 ans et je suis actuellement en seconde
+        année à l'ISCOM de Lille en Communication &amp; Marketing Digital.
+      </p>
+      <p>
+        Passionné depuis quelques année maintenant par le digital et plus
+        particulièrement par la création de site web, optimisation SEO, graphisme
+        et j'en passe, je «&nbsp;m'amuse&nbsp;» chaque jour à créer de nouvelles
+        choses, à apprendre, car dans ce milieu on est toujours débutant.
+      </p>
+      <p>
+        Durant mes années de lycée j'ai suivi un cursus en Bac Professionnel des
+        métiers de la relation client, puis après une année de césure, je suis
+        tombé sur internet par hasard sur l'ISCOM et ce fût assez rapide de me
+        rediriger vers des études, mélangeant théorie, créativité et pratique
+        c'était le compromis parfait pour pouvoir laisser libre cours à mon
+        imagination.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 4 — VOIR MON CV
+  ══════════════════════════════════════════ -->
+  <section class="section-cv">
+    <a class="cv-link" href="https://readymag.website/u1297180235/5893419/cv/">
+      VOIR MON CV
+    </a>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer>
+    <span>theolegrain.fr</span>
+    <div class="footer-sep"></div>
+    <span>theolegrain@icloud.com</span>
+    <div class="footer-sep"></div>
+    <span>2026</span>
+  </footer>
+
+</body>
+</html>
