@@ -48,42 +48,30 @@
     a { color: inherit; text-decoration: none; }
 
     /* ══════════════════════════════════════════
-       SIDEBAR FIXE (gauche)
+       NAV FIXE GAUCHE
     ══════════════════════════════════════════ */
-    .sidebar {
+    nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 130px;
-      height: 100vh;
-      z-index: 100;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
       display: flex;
       flex-direction: column;
-      padding: 24px 28px;
+      gap: 14px;
     }
-
-    .sidebar .nav-top {
-      font-family: "Druk Wide", sans-serif;
-      font-weight: 900;
-      font-size: 10px;
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
       letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #fff;
+      transition: color 0.2s;
+      white-space: nowrap;
     }
+    nav a:hover { text-decoration: underline; }
 
-    .sidebar .nav-bottom {
-      margin-top: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      font-family: Graphik, sans-serif;
-      font-weight: 400;
-      font-size: 13px;
-      color: #fff;
-    }
-    .sidebar .nav-bottom a:hover { text-decoration: underline; }
-
-    /* ══════════════════════════════════════════
+        /* ══════════════════════════════════════════
        SECTION 1 — HERO
     ══════════════════════════════════════════ */
     .section-hero {
@@ -213,16 +201,18 @@
     }
 
     .cv-link {
-      font-family: "Druk Condensed", sans-serif;
-      font-weight: 800;
-      font-size: clamp(48px, 9vw, 130px);
-      letter-spacing: 0.04em;
+      font-family: Graphik, sans-serif;
+      font-weight: 700;
+      font-size: clamp(18px, 2.5vw, 32px);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.18);
-      transition: color 0.3s ease;
+      color: rgba(255, 255, 255, 0.45);
+      transition: color 0.3s ease, border-color 0.3s ease;
       text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 20px 56px;
     }
-    .cv-link:hover { color: rgba(255, 255, 255, 0.9); }
+    .cv-link:hover { color: rgba(255, 255, 255, 0.9); border-color: rgba(255, 255, 255, 0.7); }
 
     /* ══════════════════════════════════════════
        FOOTER
@@ -271,16 +261,15 @@
     .col-ai { color: #ff9a00; }
     .col-id { color: #ff4488; }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- ── Sidebar fixe ── -->
-  <nav class="sidebar">
-    <a href="https://theolegrain.fr" class="nav-top">Accueil</a>
-    <div class="nav-bottom">
-      <a href="mailto:theo.legrain@iscom.org">Mail</a>
-      <a href="https://www.linkedin.com/in/théo-legrain-5241a1336/" target="_blank">Linkedin</a>
-    </div>
+  <nav>
+    <a href="https://theolegrain.fr">ACCUEIL</a>
+    <a href="mailto:theo.legrain@iscom.org">Mail</a>
+    <a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">Linkedin</a>
   </nav>
 
   <!-- ══════════════════════════════════════════
