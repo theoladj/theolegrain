@@ -1,37 +1,37 @@
 <!DOCTYPE html>
-  <html lang="fr">
-  <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mentions Légales — Théo Legrain</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions Légales — Théo Legrain</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <style>
-  :root {
-    --black: #000000;
-  --white: #ffffff;
-      --accent: #ff4444;
-      --bg: #0a0a0a;
-  --text: #e1e1e1;
-    }
+<style>
+:root {
+--black: #000000;
+--white: #ffffff;
+--accent: #ff4444;
+--bg: #0a0a0a;
+--text: #e1e1e1;
+}
 
 *, *::before, *::after {
-      box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+box-sizing: border-box;
+margin: 0;
+padding: 0;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-    background: var(--black);
-  color: var(--white);
-  font-family: 'Space Grotesk', sans-serif;
-  overflow-x: hidden;
-  min-height: 100vh;
+background: var(--black);
+color: var(--white);
+font-family: 'Space Grotesk', sans-serif;
+overflow-x: hidden;
+min-height: 100vh;
 }
 
 a { cursor: pointer; color: var(--white); text-decoration: none; }
@@ -39,242 +39,242 @@ a:hover { color: var(--accent); }
 
 /* NAV */
 nav {
-    position: fixed;
-  left: 28px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+position: fixed;
+left: 28px;
+top: 50%;
+transform: translateY(-50%);
+z-index: 100;
+display: flex;
+flex-direction: column;
+gap: 14px;
 }
 nav a {
-    color: var(--white);
-  text-decoration: none;
-  font-size: 7px;
-  font-family: 'Press Start 2P', monospace;
-  letter-spacing: 0.05em;
-  transition: color 0.2s;
-  white-space: nowrap;
+color: var(--white);
+text-decoration: none;
+font-size: 7px;
+font-family: 'Press Start 2P', monospace;
+letter-spacing: 0.05em;
+transition: color 0.2s;
+white-space: nowrap;
 }
 nav a:hover { color: var(--accent); }
 
 /* MAIN */
 .mentions-wrapper {
-    max-width: 860px;
-  margin: 0 auto;
-  padding: 100px 40px 80px 160px;
+max-width: 860px;
+margin: 0 auto;
+padding: 100px 40px 80px 160px;
 }
 
 .page-title {
-    font-family: 'Press Start 2P', monospace;
-  font-size: clamp(16px, 2.5vw, 28px);
-  color: var(--white);
-  margin-bottom: 60px;
-  letter-spacing: 0.08em;
+font-family: 'Press Start 2P', monospace;
+font-size: clamp(16px, 2.5vw, 28px);
+color: var(--white);
+margin-bottom: 60px;
+letter-spacing: 0.08em;
 }
 
 .section-block {
-    margin-bottom: 48px;
-  border-left: 2px solid #333;
-  padding-left: 24px;
+margin-bottom: 48px;
+border-left: 2px solid #333;
+padding-left: 24px;
 }
 
 .section-block h2 {
-    font-family: 'Press Start 2P', monospace;
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  margin-bottom: 16px;
-  text-transform: uppercase;
+font-family: 'Press Start 2P', monospace;
+font-size: 10px;
+color: var(--accent);
+letter-spacing: 0.1em;
+margin-bottom: 16px;
+text-transform: uppercase;
 }
 
 .section-block p,
-  .section-block address {
-    font-size: 14px;
-  line-height: 1.9;
-  color: #ccc;
-    font-style: normal;
+.section-block address {
+font-size: 14px;
+line-height: 1.9;
+color: #ccc;
+font-style: normal;
 }
 
 .section-block a {
-    color: var(--white);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+color: var(--white);
+text-decoration: underline;
+text-underline-offset: 3px;
 }
 .section-block a:hover { color: var(--accent); }
 
 .divider {
-  border: none;
-  border-top: 1px solid #222;
-  margin: 48px 0;
+border: none;
+border-top: 1px solid #222;
+margin: 48px 0;
 }
 
 /* FOOTER */
 footer {
-    border-top: 1px solid #333;
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr 1px 1fr 1px 1fr;
-  padding: 40px 60px 40px 160px;
-  min-height: 100px;
-  align-items: center;
+border-top: 1px solid #333;
+display: grid;
+grid-template-columns: 1fr 1px 1fr 1px 1fr 1px 1fr;
+padding: 40px 60px 40px 160px;
+min-height: 100px;
+align-items: center;
 }
 .footer-col {
-    padding: 0 40px;
-  font-size: 7px;
-  font-family: 'Press Start 2P', monospace;
-  color: var(--white);
-  letter-spacing: 0.05em;
-  line-height: 1.8;
+padding: 0 40px;
+font-size: 7px;
+font-family: 'Press Start 2P', monospace;
+color: var(--white);
+letter-spacing: 0.05em;
+line-height: 1.8;
 }
 .footer-sep { width: 1px; height: 60px; background: #333; align-self: center; }
 footer a { color: var(--white); text-decoration: none; }
 footer a:hover { color: var(--accent); }
 
 @media (max-width: 768px) {
-  nav { left: 10px; }
-  .mentions-wrapper { padding: 80px 20px 60px 60px; }
-  footer { padding: 30px 20px; grid-template-columns: 1fr; }
-  .footer-sep { display: none; }
-    }
+nav { left: 10px; }
+.mentions-wrapper { padding: 80px 20px 60px 60px; }
+footer { padding: 30px 20px; grid-template-columns: 1fr; }
+.footer-sep { display: none; }
+}
 </style>
-    </head>
-    <body>
+</head>
+<body>
 
-    <!-- NAV -->
-    <nav>
-      <a href="/">Accueil</a>
-      <a href="mailto:theolegrain@icloud.com">Mail</a>
-      <a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">Linkedin</a>
-      <a href="/qui-suis-je/" target="_blank">Qui suis-je ?</a>
-    </nav>
+<!-- NAV -->
+<nav>
+<a href="/">Accueil</a>
+<a href="mailto:theolegrain@icloud.com">Mail</a>
+<a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">Linkedin</a>
+<a href="/qui-suis-je/" target="_blank">Qui suis-je ?</a>
+</nav>
 
-    <!-- CONTENU -->
-    <main class="mentions-wrapper">
+<!-- CONTENU -->
+<main class="mentions-wrapper">
 
-      <h1 class="page-title">MENTIONS LÉGALES</h1>
+<h1 class="page-title">MENTIONS LÉGALES</h1>
 
-      <!-- 1. Éditeur -->
-      <div class="section-block">
-        <h2>1. Éditeur du site</h2>
-    <address>
-      <strong>Théo Legrain</strong><br>
-      Étudiant en communication &amp; design<br>
-      ISCOM Paris<br>
-      E-mail : <a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a><br>
-          E-mail académique : <a href="mailto:theo.legrain@iscom.org">theo.legrain@iscom.org</a>
-        </address>
-      </div>
+<!-- 1. Éditeur -->
+<div class="section-block">
+<h2>1. Éditeur du site</h2>
+<address>
+<strong>Théo Legrain</strong><br>
+Étudiant en communication &amp; design<br>
+ISCOM Paris<br>
+E-mail : <a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a><br>
+E-mail académique : <a href="mailto:theo.legrain@iscom.org">theo.legrain@iscom.org</a>
+</address>
+</div>
 
-      <hr class="divider">
+<hr class="divider">
 
-      <!-- 2. Hébergement -->
-      <div class="section-block">
-        <h2>2. Hébergement</h2>
-        <p>
-          Ce site est hébergé via <strong>GitHub Pages</strong>, un service de GitHub, Inc.<br>
-          88 Colin P Kelly Jr Street, San Francisco, CA 94107, États-Unis.<br>
-          Site web : <a href="https://pages.github.com" target="_blank">pages.github.com</a>
-        </p>
-      </div>
+<!-- 2. Hébergement -->
+<div class="section-block">
+<h2>2. Hébergement</h2>
+<p>
+Ce site est hébergé via <strong>Vercel</strong>, un service de Vercel Inc.<br>
+340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis.<br>
+Site web : <a href="https://vercel.com" target="_blank">vercel.com</a>
+</p>
+</div>
 
-      <hr class="divider">
+<hr class="divider">
 
-      <!-- 3. Propriété intellectuelle -->
-      <div class="section-block">
-        <h2>3. Propriété intellectuelle</h2>
-    <p>
-      L'ensemble des contenus présents sur le site <a href="https://theolegrain.fr">theolegrain.fr</a>
-      (textes, visuels, photographies, designs, montages vidéo, illustrations, etc.)
-      sont la propriété exclusive de Théo Legrain, sauf mention contraire.
-    </p>
-    <p style="margin-top: 12px;">
-      Toute reproduction, représentation, modification, publication ou adaptation
-      de tout ou partie de ces éléments, quel que soit le moyen ou le procédé utilisé,
-          est interdite sans l'autorisation préalable et écrite de Théo Legrain,
-          sous peine de poursuites judiciaires au titre de la contrefaçon.
-        </p>
-      </div>
+<!-- 3. Propriété intellectuelle -->
+<div class="section-block">
+<h2>3. Propriété intellectuelle</h2>
+<p>
+L'ensemble des contenus présents sur le site <a href="https://theolegrain.fr">theolegrain.fr</a>
+(textes, visuels, photographies, designs, montages vidéo, illustrations, etc.)
+sont la propriété exclusive de Théo Legrain, sauf mention contraire.
+</p>
+<p style="margin-top: 12px;">
+Toute reproduction, représentation, modification, publication ou adaptation
+de tout ou partie de ces éléments, quel que soit le moyen ou le procédé utilisé,
+est interdite sans l'autorisation préalable et écrite de Théo Legrain,
+sous peine de poursuites judiciaires au titre de la contrefaçon.
+</p>
+</div>
 
-      <hr class="divider">
+<hr class="divider">
 
-      <!-- 4. Données personnelles -->
-      <div class="section-block">
-        <h2>4. Données personnelles</h2>
-    <p>
-      Ce site ne collecte aucune donnée personnelle. Aucun formulaire d'inscription,
-          de contact ou de suivi comportemental n'est mis en place.
-        </p>
-        <p style="margin-top: 12px;">
-          Conformément à la loi n° 78-17 du 6 janvier 1978 (Loi Informatique et Libertés)
-      et au Règlement Général sur la Protection des Données (RGPD), toute personne
-      dispose d'un droit d'accès, de rectification et de suppression des données
-      la concernant. Pour exercer ce droit, veuillez contacter :
-        <a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a>.
-        </p>
-      </div>
+<!-- 4. Données personnelles -->
+<div class="section-block">
+<h2>4. Données personnelles</h2>
+<p>
+Ce site ne collecte aucune donnée personnelle. Aucun formulaire d'inscription,
+de contact ou de suivi comportemental n'est mis en place.
+</p>
+<p style="margin-top: 12px;">
+Conformément à la loi n° 78-17 du 6 janvier 1978 (Loi Informatique et Libertés)
+et au Règlement Général sur la Protection des Données (RGPD), toute personne
+dispose d'un droit d'accès, de rectification et de suppression des données
+la concernant. Pour exercer ce droit, veuillez contacter :
+<a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a>.
+</p>
+</div>
 
-      <hr class="divider">
+<hr class="divider">
 
-      <!-- 5. Cookies -->
-      <div class="section-block">
-        <h2>5. Cookies</h2>
-        <p>
-          Ce site n'utilise pas de cookies à des fins publicitaires ou de suivi.
-          Des cookies techniques peuvent être déposés par le navigateur à des fins
-      de fonctionnement, sans collecte de données personnelles.
-        </p>
-      </div>
+<!-- 5. Cookies -->
+<div class="section-block">
+<h2>5. Cookies</h2>
+<p>
+Ce site n'utilise pas de cookies à des fins publicitaires ou de suivi.
+Des cookies techniques peuvent être déposés par le navigateur à des fins
+de fonctionnement, sans collecte de données personnelles.
+</p>
+</div>
 
-      <hr class="divider">
+<hr class="divider">
 
-      <!-- 6. Liens externes -->
-      <div class="section-block">
-        <h2>6. Liens externes</h2>
-        <p>
-          Ce site contient des liens vers des plateformes tierces
-      (YouTube, LinkedIn, TikTok). Théo Legrain n'est pas responsable du contenu
-          de ces sites et ne peut être tenu pour responsable des préjudices directs ou
-      indirects résultant de l'accès à ces ressources.
-        </p>
-      </div>
+<!-- 6. Liens externes -->
+<div class="section-block">
+<h2>6. Liens externes</h2>
+<p>
+Ce site contient des liens vers des plateformes tierces
+(YouTube, LinkedIn, TikTok). Théo Legrain n'est pas responsable du contenu
+de ces sites et ne peut être tenu pour responsable des préjudices directs ou
+indirects résultant de l'accès à ces ressources.
+</p>
+</div>
 
-      <hr class="divider">
+<hr class="divider">
 
-      <!-- 7. Droit applicable -->
-      <div class="section-block">
-        <h2>7. Droit applicable</h2>
-        <p>
-          Les présentes mentions légales sont régies par le droit français.
-          En cas de litige, et après échec de toute tentative de règlement amiable,
-      les tribunaux français seront seuls compétents.
-        </p>
-      </div>
+<!-- 7. Droit applicable -->
+<div class="section-block">
+<h2>7. Droit applicable</h2>
+<p>
+Les présentes mentions légales sont régies par le droit français.
+En cas de litige, et après échec de toute tentative de règlement amiable,
+les tribunaux français seront seuls compétents.
+</p>
+</div>
 
-      <hr class="divider">
+<hr class="divider">
 
-      <!-- 8. Contact -->
-      <div class="section-block">
-        <h2>8. Contact</h2>
-        <p>
-          Pour toute question relative au site ou aux présentes mentions légales :<br>
-          <a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a><br>
-          <a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">LinkedIn</a>
-        </p>
-      </div>
+<!-- 8. Contact -->
+<div class="section-block">
+<h2>8. Contact</h2>
+<p>
+Pour toute question relative au site ou aux présentes mentions légales :<br>
+<a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a><br>
+<a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">LinkedIn</a>
+</p>
+</div>
 
-    </main>
+</main>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-col"><a href="https://theolegrain.fr">theolegrain.fr</a></div>
-      <div class="footer-sep"></div>
-      <div class="footer-col"><a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a></div>
-      <div class="footer-sep"></div>
-      <div class="footer-col"><a href="/mentions-legales/">Mentions légales</a></div>
-  <div class="footer-sep"></div>
-  <div class="footer-col">2026</div>
-    </footer>
+<!-- FOOTER -->
+<footer>
+<div class="footer-col"><a href="https://theolegrain.fr">theolegrain.fr</a></div>
+<div class="footer-sep"></div>
+<div class="footer-col"><a href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a></div>
+<div class="footer-sep"></div>
+<div class="footer-col"><a href="/mentions-legales/">Mentions légales</a></div>
+<div class="footer-sep"></div>
+<div class="footer-col">2026</div>
+</footer>
 
-    </body>
-    </html>
+</body>
+</html>
