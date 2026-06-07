@@ -35,7 +35,6 @@ jobs:
             const files = fs.readdirSync(imagesDir).filter(f => f.endsWith('.webp'));
             
             for (const file of files) {
-              // Skip already-created small versions
               if (file.includes('-800w')) continue;
               
               const inputPath = path.join(imagesDir, file);
@@ -48,7 +47,6 @@ jobs:
                 const meta = await img.metadata();
                 const origSize = fs.statSync(inputPath).size;
                 
-                // Recompress full size
                 await sharp(inputPath)
                   .webp({ quality })
                   .toFile(inputPath + '.tmp');
@@ -62,15 +60,18 @@ jobs:
                   console.log(`  Full: already optimal (${Math.round(origSize/1024)}KiB)`);
                 }
                 
-                // Create small version (800px wide) only if original is wider
                 if (meta.width > smallWidth) {
                   const smallPath = path.join(imagesDir, baseName + '-800w.webp');
-                  await sharp(inputPath)
-                    .resize(smallWidth)
-                    .webp({ quality })
-                    .toFile(smallPath);
-                  const smallSize = fs.statSync(smallPath).size;
-                  console.log(`  Small 800w: ${Math.round(smallSize/1024)}KiB -> ${smallPath}`);
+                  if (!fs.existsSync(smallPath)) {
+                    await sharp(inputPath)
+                      .resize(smallWidth)
+                      .webp({ quality })
+                      .toFile(smallPath);
+                    const smallSize = fs.statSync(smallPath).size;
+                    console.log(`  Small 800w: ${Math.round(smallSize/1024)}KiB -> ${smallPath}`);
+                  } else {
+                    console.log(`  Small 800w: already exists`);
+                  }
                 }
               } catch (err) {
                 console.error(`  Error processing ${file}:`, err.message);
@@ -98,24 +99,16 @@ jobs:
           const imagesDir = 'site/images';
 
           function buildSrcset(src) {
-            // Extract filename from src like /images/lastronaute.webp/ or /images/lastronaute.webp
             const match = src.match(/\/images\/([^/]+\.webp)/);
             if (!match) return null;
             const filename = match[1];
             const baseName = path.basename(filename, '.webp');
             const smallPath = path.join(imagesDir, baseName + '-800w.webp');
-            
             if (!fs.existsSync(smallPath)) return null;
-            
             return {
-              srcset: `/images/${baseName}-800w.webp 800w, /images/${filename} ${getOrigWidth(filename)}w`,
+              srcset: `/images/${baseName}-800w.webp 800w, /images/${filename} 1600w`,
               sizes: '(max-width: 900px) 800px, 100vw'
             };
-          }
-
-          function getOrigWidth(filename) {
-            // We can't know exact width without reading image, use 1600 as default
-            return 1600;
           }
 
           for (const htmlFile of htmlFiles) {
@@ -123,7 +116,6 @@ jobs:
             let content = fs.readFileSync(htmlFile, 'utf8');
             let modified = false;
             
-            // Add srcset to img tags that have a webp src and no srcset yet
             content = content.replace(/<img([^>]*?)src="(\/images\/[^"]+\.webp[/]?)"([^>]*?)>/g, (match, before, src, after) => {
               if (match.includes('srcset=')) return match;
               const srcsetInfo = buildSrcset(src);
@@ -139,10 +131,13 @@ jobs:
           }
           EOF
 
-      - name: Commit optimized images and HTML
+      - name: Cleanup and commit only site files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
+          # Remove node_modules from git tracking if present
+          git rm -r --cached node_modules/ package-lock.json package.json 2>/dev/null || true
+          # Only stage site directory changes
+          git add site/
           git diff --staged --quiet || git commit -m "Optimisation images: compression WebP + srcset 800w"
           git push
