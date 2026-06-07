@@ -1,0 +1,148 @@
+name: Optimiser les images WebP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install sharp
+        run: npm install sharp
+
+      - name: Compress images and create srcset versions
+        run: |
+          node << 'EOF'
+          const sharp = require('sharp');
+          const fs = require('fs');
+          const path = require('path');
+
+          const imagesDir = 'site/images';
+          const quality = 72;
+          const smallWidth = 800;
+
+          async function processImages() {
+            const files = fs.readdirSync(imagesDir).filter(f => f.endsWith('.webp'));
+            
+            for (const file of files) {
+              // Skip already-created small versions
+              if (file.includes('-800w')) continue;
+              
+              const inputPath = path.join(imagesDir, file);
+              const baseName = path.basename(file, '.webp');
+              
+              console.log(`Processing ${file}...`);
+              
+              try {
+                const img = sharp(inputPath);
+                const meta = await img.metadata();
+                const origSize = fs.statSync(inputPath).size;
+                
+                // Recompress full size
+                await sharp(inputPath)
+                  .webp({ quality })
+                  .toFile(inputPath + '.tmp');
+                const newSize = fs.statSync(inputPath + '.tmp').size;
+                
+                if (newSize < origSize) {
+                  fs.renameSync(inputPath + '.tmp', inputPath);
+                  console.log(`  Full: ${Math.round(origSize/1024)}KiB -> ${Math.round(newSize/1024)}KiB (saved ${Math.round((1-newSize/origSize)*100)}%)`);
+                } else {
+                  fs.unlinkSync(inputPath + '.tmp');
+                  console.log(`  Full: already optimal (${Math.round(origSize/1024)}KiB)`);
+                }
+                
+                // Create small version (800px wide) only if original is wider
+                if (meta.width > smallWidth) {
+                  const smallPath = path.join(imagesDir, baseName + '-800w.webp');
+                  await sharp(inputPath)
+                    .resize(smallWidth)
+                    .webp({ quality })
+                    .toFile(smallPath);
+                  const smallSize = fs.statSync(smallPath).size;
+                  console.log(`  Small 800w: ${Math.round(smallSize/1024)}KiB -> ${smallPath}`);
+                }
+              } catch (err) {
+                console.error(`  Error processing ${file}:`, err.message);
+              }
+            }
+          }
+
+          processImages().catch(console.error);
+          EOF
+
+      - name: Update HTML files with srcset
+        run: |
+          node << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          const htmlFiles = [
+            'site/index.html',
+            'site/alice/index.html',
+            'site/astronaute/index.html',
+            'site/qui-suis-je/index.html',
+            'site/mentions-legales/index.html',
+          ];
+
+          const imagesDir = 'site/images';
+
+          function buildSrcset(src) {
+            // Extract filename from src like /images/lastronaute.webp/ or /images/lastronaute.webp
+            const match = src.match(/\/images\/([^/]+\.webp)/);
+            if (!match) return null;
+            const filename = match[1];
+            const baseName = path.basename(filename, '.webp');
+            const smallPath = path.join(imagesDir, baseName + '-800w.webp');
+            
+            if (!fs.existsSync(smallPath)) return null;
+            
+            return {
+              srcset: `/images/${baseName}-800w.webp 800w, /images/${filename} ${getOrigWidth(filename)}w`,
+              sizes: '(max-width: 900px) 800px, 100vw'
+            };
+          }
+
+          function getOrigWidth(filename) {
+            // We can't know exact width without reading image, use 1600 as default
+            return 1600;
+          }
+
+          for (const htmlFile of htmlFiles) {
+            if (!fs.existsSync(htmlFile)) continue;
+            let content = fs.readFileSync(htmlFile, 'utf8');
+            let modified = false;
+            
+            // Add srcset to img tags that have a webp src and no srcset yet
+            content = content.replace(/<img([^>]*?)src="(\/images\/[^"]+\.webp[/]?)"([^>]*?)>/g, (match, before, src, after) => {
+              if (match.includes('srcset=')) return match;
+              const srcsetInfo = buildSrcset(src);
+              if (!srcsetInfo) return match;
+              modified = true;
+              return `<img${before}src="${src}" srcset="${srcsetInfo.srcset}" sizes="${srcsetInfo.sizes}"${after}>`;
+            });
+            
+            if (modified) {
+              fs.writeFileSync(htmlFile, content, 'utf8');
+              console.log(`Updated ${htmlFile}`);
+            }
+          }
+          EOF
+
+      - name: Commit optimized images and HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Optimisation images: compression WebP + srcset 800w"
+          git push
