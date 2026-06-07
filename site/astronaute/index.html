@@ -13,7 +13,6 @@
 <meta property="og:locale" content="fr_FR">
 <title>L'Astronaute — Théo Legrain</title>
 
-
  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
 <link rel="shortcut icon" href="/favicon/favicon.ico" />
@@ -42,9 +41,11 @@
     z-index: 200;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 0px; /* Ajusté pour laisser le padding faire l'espace cliquable */
   }
   nav a {
+    display: block;
+    padding: 12px 0; /* Ajout d'une zone tactile plus large pour le mobile */
     color: #fff;
     text-decoration: none;
     font-family: 'Press Start 2P', monospace;
@@ -224,7 +225,12 @@
     line-height: 1.8;
   }
   .footer-sep { width: 1px; height: 60px; background: #333; align-self: center; }
-  footer a { color: #fff; text-decoration: none; }
+  footer a { 
+    color: #fff; 
+    text-decoration: none; 
+    display: inline-block; 
+    padding: 12px 0; /* Ajout d'une zone tactile plus large */
+  }
   footer a:hover { color: #ff4444; }
 
   /* ── SCROLL REVEAL ── */
@@ -236,7 +242,7 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 768px) {
-    nav { left: 10px; }
+    nav { left: 10px; gap: 8px; }
     #content1, #content2 { padding: 60px 20px 60px 60px; }
     footer { padding: 30px 20px; grid-template-columns: 1fr; }
     .footer-sep { display: none; }
@@ -251,41 +257,47 @@
   <a href="https://theolegrain.fr/">ACCUEIL</a>
   <a href="mailto:theo.legrain@iscom.org">Mail</a>
   <a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">Linkedin</a>
-  <a href="theolegrain.fr/qui-suis-je/" target="_blank">Qui suis-je ?</a>
+  <a href="https://theolegrain.fr/qui-suis-je/" target="_blank">Qui suis-je ?</a>
 </nav>
 
-<!-- SECTION 1 — HERO SPATIAL -->
-<section id="hero">
-  <canvas id="stars-canvas"></canvas>
-  <div class="planet-grey"></div>
-  <div class="planet-red"></div>
-  <h1 class="hero-title">L'ASTRONAUTE</h1>
-</section>
+<!-- DÉBUT DU REPÈRE PRINCIPAL (CORRECTION) -->
+<main>
 
-<!-- SECTION 2 — IMAGE ORANGE + TEXTE -->
-<section id="content1">
-  <div class="img-block reveal">
-    <img
-      src="/images/astronaute2.webp/" srcset="/images/astronaute2-800w.webp 800w, /images/astronaute2.webp 1600w" sizes="(max-width: 900px) 800px, 100vw"
-      alt="L'Astronaute — version orange"
-    />
-  </div>
-  <p class="project-text reveal">
-    Pour ce projet, aucune véritable idée de départ, juste une envie d'apprendre à gérer au mieux les reflets de lumières n'ayant jamais vraiment essayé.<br><br>
-    Je regardais le ciel un soir et j'ai pensé à un astronaute sur une autre planète, peu à peu des idées s'assemblent pour finalement donner ce résultat.<br><br>
-    J'ai pu créer une seconde déclinaison avec une variation de couleurs vers le rouge, donnant un effet/aspect légèrement ''chaotique'.
-  </p>
-</section>
+  <!-- SECTION 1 — HERO SPATIAL -->
+  <section id="hero">
+    <canvas id="stars-canvas"></canvas>
+    <div class="planet-grey"></div>
+    <div class="planet-red"></div>
+    <h1 class="hero-title">L'ASTRONAUTE</h1>
+  </section>
 
-<!-- SECTION 3 — IMAGE ROUGE -->
-<section id="content2">
-  <div class="img-block reveal">
-    <img
-      src="/images/lastronaute.webp/" srcset="/images/lastronaute-800w.webp 800w, /images/lastronaute.webp 1600w" sizes="(max-width: 900px) 800px, 100vw"
-      alt="L'Astronaute — version rouge"
-    />
-  </div>
-</section>
+  <!-- SECTION 2 — IMAGE ORANGE + TEXTE -->
+  <section id="content1">
+    <div class="img-block reveal">
+      <img
+        src="/images/astronaute2.webp/" srcset="/images/astronaute2-800w.webp 800w, /images/astronaute2.webp 1600w" sizes="(max-width: 900px) 800px, 100vw"
+        alt="L'Astronaute — version orange"
+      />
+    </div>
+    <p class="project-text reveal">
+      Pour ce projet, aucune véritable idée de départ, juste une envie d'apprendre à gérer au mieux les reflets de lumières n'ayant jamais vraiment essayé.<br><br>
+      Je regardais le ciel un soir et j'ai pensé à un astronaute sur une autre planète, peu à peu des idées s'assemblent pour finalement donner ce résultat.<br><br>
+      J'ai pu créer une seconde déclinaison avec une variation de couleurs vers le rouge, donnant un effet/aspect légèrement ''chaotique'.
+    </p>
+  </section>
+
+  <!-- SECTION 3 — IMAGE ROUGE -->
+  <section id="content2">
+    <div class="img-block reveal">
+      <img
+        src="/images/lastronaute.webp/" srcset="/images/lastronaute-800w.webp 800w, /images/lastronaute.webp 1600w" sizes="(max-width: 900px) 800px, 100vw"
+        alt="L'Astronaute — version rouge"
+      />
+    </div>
+  </section>
+
+</main>
+<!-- FIN DU REPÈRE PRINCIPAL -->
 
 <!-- FOOTER -->
 <footer>
