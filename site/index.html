@@ -14,9 +14,9 @@
 <meta property="og:locale" content="fr_FR">
 
 
-  
+
   <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href"/favicon/favicon.svg" />
 <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
 <link rel="manifest" href="/favicon/site.webmanifest" />
@@ -25,11 +25,12 @@
   <!-- Polices et Bibliothèques -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;500;700&display=swap" onload="this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet"></noscript>
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-load-image/5.16.0/load-image.all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-load-image/5.16.0/load-image.all.min.js" defer></script>
 
   <style>
     /* ── VARIABLES & BASES ── */
@@ -37,6 +38,7 @@
       --black: #000000;
       --white: #ffffff;
       --red: #e03030;
+      --accent: #ff4444;
       --accent: #ff4444;
       --bg: #0a0a0a;
       --text: #e1e1e1;
@@ -487,6 +489,7 @@
       .morph-container { font-size: 15vw; }
     }
   </style>
+<link rel="preload" as="image" href="/images/lastronaute.webp/" fetchpriority="high">
 </head>
 <body>
 
@@ -534,7 +537,7 @@
   <section id="astronaute">
     <h1 class="section-title reveal">L'ASTRONAUTE</h1>
     <a href="/astronaute/" target="_blank">
-      <img class="astronaute-img reveal" src="/images/lastronaute.webp/" alt="L'Astronaute — projet Théo Legrain" />
+      <img class="astronaute-img reveal" src="/images/lastronaute.webp/" alt="L'Astronaute — projet Théo Legrain" width="807" height="1142" fetchpriority="high" />
     </a>
   </section>
 
@@ -543,13 +546,13 @@
     <div class="pictures-container reveal">
       <div class="pictures-wrapper">
         <!-- Row 1 -->
-        <img src="/images/grand place.webp/" alt="grand place">
-        <img src="/images/rue lille.webp/" alt="rue lille">
-        <img src="/images/st so.webp/" alt="st so">
+        <img src="/images/grand place.webp/" alt="grand place" loading="lazy">
+        <img src="/images/rue lille.webp/" alt="rue lille" loading="lazy">
+        <img src="/images/st so.webp/" alt="st so" loading="lazy">
         <!-- Row 2 -->
-        <img src="/images/maison.webp/" alt="maison">
-        <img src="/images/lille centre.webp/" alt="lille centre">
-        <img src="/images/ciel bleu.webp/" alt="ciel bleu">
+        <img src="/images/maison.webp/" alt="maison" loading="lazy">
+        <img src="/images/lille centre.webp/" alt="lille centre" loading="lazy">
+        <img src="/images/ciel bleu.webp/" alt="ciel bleu" loading="lazy">
       </div>
       <div class="pictures-label">PICTURES</div>
     </div>
@@ -569,18 +572,18 @@
   <section id="designs">
     <h2 class="section-title reveal">DESIGNS EN VRAC</h2>
     <div class="designs-grid reveal">
-      <div class="design-card"><img src="/images/redbull1.webp/" alt="Redbull Tropical"></div>
-      <div class="design-card"><img src="/images/redbull2.webp/" alt="Redbull FDD"></div>
-      <div class="design-card"><img src="/images/9M.webp/" alt="SaveTheDate 9M"></div>
-      <div class="design-card"><img src="/images/bagoursdor.webp/" alt="BagOursDor"></div>
-      <div class="design-card"><img src="/images/projetPAO1A.webp/" alt="Projet Bali"></div>
-      <div class="design-card"><img src="/images/ProjetPAO1A2.webp/" alt="Projet Bali2"></div>
-      <div class="design-card"><img src="/images/FlowMusique.webp/" alt="Pub Flow Musique"></div>
-      <div class="design-card"><img src="/images/FlowMusique2.webp/" alt="Pub Flow Musique2"></div>
-      <div class="design-card"><img src="/images/LogoWave.webp/" alt="Logo Wave"></div>
-      <div class="design-card"><img src="/images/BrutDesign.webp/" alt="Brut design affiche"></div>
-      <div class="design-card"><img src="/images/lahaine.webp/" alt="affiche la haine"></div>
-      <div class="design-card"><img src="/images/travis scott.webp/" alt="affiche traviss scott"></div>
+      <div class="design-card"><img src="/images/redbull1.webp/" alt="Redbull Tropical" loading="lazy"></div>
+      <div class="design-card"><img src="/images/redbull2.webp/" alt="Redbull FDD" loading="lazy"></div>
+      <div class="design-card"><img src="/images/9M.webp/" alt="SaveTheDate 9M" loading="lazy"></div>
+      <div class="design-card"><img src="/images/bagoursdor.webp/" alt="BagOursDor" loading="lazy"></div>
+      <div class="design-card"><img src="/images/projetPAO1A.webp/" alt="Projet Bali" loading="lazy"></div>
+      <div class="design-card"><img src="/images/ProjetPAO1A2.webp/" alt="Projet Bali2" loading="lazy"></div>
+      <div class="design-card"><img src="/images/FlowMusique.webp/" alt="Pub Flow Musique" loading="lazy"></div>
+      <div class="design-card"><img src="/images/FlowMusique2.webp/" alt="Pub Flow Musique2" loading="lazy"></div>
+      <div class="design-card"><img src="/images/LogoWave.webp/" alt="Logo Wave" loading="lazy"></div>
+      <div class="design-card"><img src="/images/BrutDesign.webp/" alt="Brut design affiche" loading="lazy"></div>
+      <div class="design-card"><img src="/images/lahaine.webp/" alt="affiche la haine" loading="lazy"></div>
+      <div class="design-card"><img src="/images/travis scott.webp/" alt="affiche traviss scott" loading="lazy"></div>
     </div>
   </section>
 
@@ -589,32 +592,32 @@
     <h2 class="section-title reveal">MONTAGES VIDÉOS</h2>
     <div class="videos-grid reveal">
       <a class="video-card" href="https://youtu.be/RA3VUYPyogI" target="_blank">
-        <img src="https://img.youtube.com/vi/RA3VUYPyogI/mqdefault.jpg" alt="Alice in Borderland">
+        <img src="https://img.youtube.com/vi/RA3VUYPyogI/mqdefault.jpg" loading="lazy" alt="Alice in Borderland">
         <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="video-title">Alice in Borderland</div>
       </a>
       <a class="video-card" href="https://youtu.be/spE--JL8lb4" target="_blank">
-        <img src="https://img.youtube.com/vi/spE--JL8lb4/mqdefault.jpg" alt="SnowFall Edit.1">
+        <img src="https://img.youtube.com/vi/spE--JL8lb4/mqdefault.jpg" loading="lazy" alt="SnowFall Edit.1">
         <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="video-title">SnowFall Edit.1</div>
       </a>
       <a class="video-card" href="https://youtu.be/cBNGgwVbF9U" target="_blank">
-        <img src="https://img.youtube.com/vi/cBNGgwVbF9U/mqdefault.jpg" alt="Edit La Haine.1">
+        <img src="https://img.youtube.com/vi/cBNGgwVbF9U/mqdefault.jpg" loading="lazy" alt="Edit La Haine.1">
         <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="video-title">Edit La Haine.1</div>
       </a>
       <a class="video-card" href="https://youtu.be/ZyKSt_rmARA" target="_blank">
-        <img src="https://img.youtube.com/vi/ZyKSt_rmARA/mqdefault.jpg" alt="Snowfall Edit.2">
+        <img src="https://img.youtube.com/vi/ZyKSt_rmARA/mqdefault.jpg" loading="lazy" alt="Snowfall Edit.2">
         <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="video-title">Snowfall Edit.2</div>
       </a>
       <a class="video-card" href="https://youtu.be/dW-Kw6bwmqk" target="_blank">
-        <img src="https://img.youtube.com/vi/dW-Kw6bwmqk/mqdefault.jpg" alt="Spiderman Edit.1">
+        <img src="https://img.youtube.com/vi/dW-Kw6bwmqk/mqdefault.jpg" loading="lazy" alt="Spiderman Edit.1">
         <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="video-title">Spiderman Edit.1</div>
       </a>
       <a class="video-card" href="https://youtu.be/G8lAkYTALOk" target="_blank">
-        <img src="https://img.youtube.com/vi/G8lAkYTALOk/mqdefault.jpg" alt="Snowfall Edit.3">
+        <img src="https://img.youtube.com/vi/G8lAkYTALOk/mqdefault.jpg" loading="lazy" alt="Snowfall Edit.3">
         <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         <div class="video-title">Snowfall Edit.3</div>
       </a>
@@ -728,3 +731,5 @@
   </script>
 </body>
 </html>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" defer></script>
