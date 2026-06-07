@@ -7,7 +7,6 @@
  
   <meta name="description" content="Portfolio de Théo Legrain — designer et développeur créatif.">
 
-  <!-- Open Graph (réseaux sociaux : Facebook, LinkedIn, Discord...) -->
   <meta property="og:title" content="Portfolio — Théo Legrain">
   <meta property="og:description" content="Portfolio de Théo Legrain — designer et développeur créatif.">
   <meta property="og:url" content="https://theolegrain.fr/">
@@ -15,13 +14,11 @@
   <meta property="og:locale" content="fr_FR">
 
   <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-  <!-- Correction ici : ajout du signe = manquant après href -->
   <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
   <link rel="shortcut icon" href="/favicon/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
   <link rel="manifest" href="/favicon/site.webmanifest" />
 
-  <!-- Polices et Bibliothèques -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;500;700&display=swap" onload="this.rel='stylesheet'">
@@ -493,7 +490,6 @@
 
   <div class="noise"></div>
 
-  <!-- SVG Filters for Morph Effect -->
   <svg class="filters">
     <defs>
       <filter id="threshold">
@@ -506,17 +502,14 @@
     </defs>
   </svg>
 
-  <!-- NAV (Garder à l'extérieur de <main> car c'est une navigation globale) -->
   <nav>
     <a href="mailto:theo.legrain@iscom.org">Mail</a>
     <a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank">Linkedin</a>
     <a href="https://theolegrain.fr/qui-suis-je/" target="_blank">Qui suis-je ?</a>
   </nav>
 
-  <!-- DEBUT DU REPERE PRINCIPAL (Résout l'erreur de l'image_4dbf1e.png) -->
   <main>
 
-    <!-- SECTION 1 — BANKSY HERO -->
     <section class="hero">
       <div class="morph-container">
         <div class="word-rotator">
@@ -534,91 +527,84 @@
       </div>
     </section>
 
-    <!-- SECTION 2 — L'ASTRONAUTE -->
     <section id="astronaute">
       <h1 class="section-title reveal">L'ASTRONAUTE</h1>
       <a href="/astronaute/" target="_blank">
-        <img class="astronaute-img reveal" src="/images/lastronaute.webp/" srcset="/images/lastronaute-800w.webp 800w, /images/lastronaute.webp 1600w" sizes="(max-width: 900px) 800px, 100vw" alt="L'Astronaute — projet Théo Legrain" width="807" height="1142" fetchpriority="high" />
+        <img class="astronaute-img reveal" src="/images/lastronaute.webp/" srcset="/images/lastronaute-800w.webp 800w, /images/lastronaute.webp 1600w" sizes="(max-width: 768px) 80vw, 400px" alt="L'Astronaute — projet Théo Legrain" width="400" height="566" fetchpriority="high" />
       </a>
     </section>
 
-    <!-- SECTION 3 — PICTURES -->
     <section id="pictures">
       <div class="pictures-container reveal">
         <div class="pictures-wrapper">
-          <!-- Row 1 -->
-          <img src="/images/grand place.webp/" alt="grand place" loading="lazy">
-          <img src="/images/rue lille.webp/" alt="rue lille" loading="lazy">
-          <img src="/images/st so.webp/" alt="st so" loading="lazy">
-          <!-- Row 2 -->
-          <img src="/images/maison.webp/" alt="maison" loading="lazy">
-          <img src="/images/lille centre.webp/" alt="lille centre" loading="lazy">
-          <img src="/images/ciel bleu.webp/" alt="ciel bleu" loading="lazy">
+          <img src="/images/grand place.webp/" alt="grand place" width="200" height="240" loading="lazy">
+          <img src="/images/rue lille.webp/" alt="rue lille" width="200" height="240" loading="lazy">
+          <img src="/images/st so.webp/" alt="st so" width="200" height="240" loading="lazy">
+          <img src="/images/maison.webp/" alt="maison" width="200" height="240" loading="lazy">
+          <img src="/images/lille centre.webp/" alt="lille centre" width="200" height="240" loading="lazy">
+          <img src="/images/ciel bleu.webp/" alt="ciel bleu" width="200" height="240" loading="lazy">
         </div>
         <div class="pictures-label">PICTURES</div>
       </div>
     </section>
 
-    <!-- SECTION 4 — AFFICHES DE SÉRIE -->
     <section id="affiches">
       <h2 class="affiches-title reveal">AFFICHES DE SÉRIE</h2>
       <div class="affiche-single reveal">
         <a href="/alice/" target="_blank">
-          <img src="/images/afficheAIB.webp/" srcset="/images/afficheAIB-800w.webp 800w, /images/afficheAIB.webp 1600w" sizes="(max-width: 900px) 800px, 100vw" alt="Alice in Borderland III affiche" />
+          <img src="/images/afficheAIB.webp/" srcset="/images/afficheAIB-800w.webp 800w, /images/afficheAIB.webp 1600w" sizes="(max-width: 768px) 85vw, 400px" alt="Alice in Borderland III affiche" width="400" height="558" loading="lazy" />
         </a>
       </div>
     </section>
 
-    <!-- SECTION 5 — DESIGNS EN VRAC -->
     <section id="designs">
       <h2 class="section-title reveal">DESIGNS EN VRAC</h2>
       <div class="designs-grid reveal">
-        <div class="design-card"><img src="/images/redbull1.webp/" alt="Redbull Tropical" loading="lazy"></div>
-        <div class="design-card"><img src="/images/redbull2.webp/" alt="Redbull FDD" loading="lazy"></div>
-        <div class="design-card"><img src="/images/9M.webp/" alt="SaveTheDate 9M" loading="lazy"></div>
-        <div class="design-card"><img src="/images/bagoursdor.webp/" alt="BagOursDor" loading="lazy"></div>
-        <div class="design-card"><img src="/images/projetPAO1A.webp/" alt="Projet Bali" loading="lazy"></div>
-        <div class="design-card"><img src="/images/ProjetPAO1A2.webp/" alt="Projet Bali2" loading="lazy"></div>
-        <div class="design-card"><img src="/images/FlowMusique.webp/" alt="Pub Flow Musique" loading="lazy"></div>
-        <div class="design-card"><img src="/images/FlowMusique2.webp/" alt="Pub Flow Musique2" loading="lazy"></div>
-        <div class="design-card"><img src="/images/LogoWave.webp/" alt="Logo Wave" loading="lazy"></div>
-        <div class="design-card"><img src="/images/BrutDesign.webp/" alt="Brut design affiche" loading="lazy"></div>
-        <div class="design-card"><img src="/images/lahaine.webp/" alt="affiche la haine" loading="lazy"></div>
-        <div class="design-card"><img src="/images/travis scott.webp/" alt="affiche traviss scott" loading="lazy"></div>
+        <div class="design-card"><img src="/images/redbull1.webp/" alt="Redbull Tropical" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/redbull2.webp/" alt="Redbull FDD" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/9M.webp/" alt="SaveTheDate 9M" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/bagoursdor.webp/" alt="BagOursDor" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/projetPAO1A.webp/" alt="Projet Bali" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/ProjetPAO1A2.webp/" alt="Projet Bali2" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/FlowMusique.webp/" alt="Pub Flow Musique" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/FlowMusique2.webp/" alt="Pub Flow Musique2" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/LogoWave.webp/" alt="Logo Wave" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/BrutDesign.webp/" alt="Brut design affiche" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/lahaine.webp/" alt="affiche la haine" width="150" height="150" loading="lazy"></div>
+        <div class="design-card"><img src="/images/travis scott.webp/" alt="affiche traviss scott" width="150" height="150" loading="lazy"></div>
       </div>
     </section>
 
-    <!-- SECTION 6 — MONTAGES VIDÉOS -->
     <section id="videos">
       <h2 class="section-title reveal">MONTAGES VIDÉOS</h2>
       <div class="videos-grid reveal">
         <a class="video-card" href="https://youtu.be/RA3VUYPyogI" target="_blank">
-          <img src="https://img.youtube.com/vi/RA3VUYPyogI/mqdefault.jpg" loading="lazy" alt="Alice in Borderland">
+          <img src="https://img.youtube.com/vi/RA3VUYPyogI/mqdefault.jpg" width="320" height="180" loading="lazy" alt="Alice in Borderland">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Alice in Borderland</div>
         </a>
         <a class="video-card" href="https://youtu.be/spE--JL8lb4" target="_blank">
-          <img src="https://img.youtube.com/vi/spE--JL8lb4/mqdefault.jpg" loading="lazy" alt="SnowFall Edit.1">
+          <img src="https://img.youtube.com/vi/spE--JL8lb4/mqdefault.jpg" width="320" height="180" loading="lazy" alt="SnowFall Edit.1">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">SnowFall Edit.1</div>
         </a>
         <a class="video-card" href="https://youtu.be/cBNGgwVbF9U" target="_blank">
-          <img src="https://img.youtube.com/vi/cBNGgwVbF9U/mqdefault.jpg" loading="lazy" alt="Edit La Haine.1">
+          <img src="https://img.youtube.com/vi/cBNGgwVbF9U/mqdefault.jpg" width="320" height="180" loading="lazy" alt="Edit La Haine.1">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Edit La Haine.1</div>
         </a>
         <a class="video-card" href="https://youtu.be/ZyKSt_rmARA" target="_blank">
-          <img src="https://img.youtube.com/vi/ZyKSt_rmARA/mqdefault.jpg" loading="lazy" alt="Snowfall Edit.2">
+          <img src="https://img.youtube.com/vi/ZyKSt_rmARA/mqdefault.jpg" width="320" height="180" loading="lazy" alt="Snowfall Edit.2">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Snowfall Edit.2</div>
         </a>
         <a class="video-card" href="https://youtu.be/dW-Kw6bwmqk" target="_blank">
-          <img src="https://img.youtube.com/vi/dW-Kw6bwmqk/mqdefault.jpg" loading="lazy" alt="Spiderman Edit.1">
+          <img src="https://img.youtube.com/vi/dW-Kw6bwmqk/mqdefault.jpg" width="320" height="180" loading="lazy" alt="Spiderman Edit.1">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Spiderman Edit.1</div>
         </a>
         <a class="video-card" href="https://youtu.be/G8lAkYTALOk" target="_blank">
-          <img src="https://img.youtube.com/vi/G8lAkYTALOk/mqdefault.jpg" loading="lazy" alt="Snowfall Edit.3">
+          <img src="https://img.youtube.com/vi/G8lAkYTALOk/mqdefault.jpg" width="320" height="180" loading="lazy" alt="Snowfall Edit.3">
           <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="video-title">Snowfall Edit.3</div>
         </a>
@@ -628,15 +614,12 @@
       </p>
     </section>
 
-    <!-- NE CLIQUE PAS -->
     <section id="easter">
       <a class="btn-noclique reveal" href="https://www.youtube.com/watch?v=Aq5WXmQQooo" target="_blank">NE CLIQUE PAS</a>
     </section>
 
   </main>
-  <!-- FIN DU REPERE PRINCIPAL -->
 
-  <!-- FOOTER (Repère sémantique autonome à l'extérieur de main) -->
   <footer>
     <div class="footer-col"><a href="https://theolegrain.fr">theolegrain.fr</a></div>
     <div class="footer-sep"></div>
@@ -647,9 +630,7 @@
     <div class="footer-col">2026</div>
   </footer>
 
-  <!-- SCRIPT LOGIQUE ACCUEIL -->
   <script>
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -661,7 +642,6 @@
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
 
-    // NE CLIQUE PAS wobble
     const btn = document.querySelector('.btn-noclique');
     let wobbleInterval;
     btn.addEventListener('mouseenter', () => {
@@ -677,14 +657,12 @@
       btn.style.transform = '';
     });
 
-    // Nav hover glow
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('mouseenter', () => link.style.textShadow = '0 0 8px rgba(255,255,255,0.6)');
       link.addEventListener('mouseleave', () => link.style.textShadow = '');
     });
   </script>
 
-  <!-- SCRIPT ANIMATION BANKSY -->
   <script>
     (function() {
       let shredding = null;
