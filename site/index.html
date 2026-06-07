@@ -83,9 +83,11 @@
       z-index: 100;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 0px; /* On retire le gap, c'est le padding des liens qui fera l'espace */
     }
     nav a {
+      display: block; /* INDISPENSABLE : permet au padding de s'appliquer verticalement */
+      padding: 12px 0; /* Crée une grosse zone cliquable (24px + la police) sans décaler le texte */
       color: var(--white);
       text-decoration: none;
       font-size: 7px;
@@ -424,7 +426,13 @@
       letter-spacing: 0.08em;
       text-align: center;
     }
-    .tiktok-cta a { color: var(--white); text-decoration: none; }
+    /* Ajout du padding pour le lien TikTok */
+    .tiktok-cta a { 
+      color: var(--white); 
+      text-decoration: none; 
+      display: inline-block; 
+      padding: 12px; 
+    }
     .tiktok-cta a:hover { color: var(--accent); }
 
     /* ── NE CLIQUE PAS ── */
@@ -467,7 +475,14 @@
       line-height: 1.8;
     }
     .footer-sep { width: 1px; height: 60px; background: #333; align-self: center; }
-    footer a { color: var(--white); text-decoration: none; }
+    
+    /* Ajout du padding pour les liens du footer */
+    footer a { 
+      color: var(--white); 
+      text-decoration: none; 
+      display: inline-block; 
+      padding: 12px 0; 
+    }
     footer a:hover { color: var(--accent); }
 
     /* ── SCROLL REVEAL ── */
@@ -486,7 +501,7 @@
     }
 
     @media (max-width: 768px) {
-      nav { left: 10px; }
+      nav { left: 10px; gap: 8px; } /* Un tout petit peu de marge supplémentaire pour les gros doigts */
       section { padding: 60px 20px 60px 60px; }
       .pictures-wrapper { grid-template-columns: repeat(3, 110px); grid-template-rows: repeat(2, 130px); }
       .designs-grid { grid-template-columns: repeat(3, 1fr); }
@@ -526,10 +541,10 @@
     <!-- SECTION 1 — BANKSY HERO -->
     <section class="hero">
       
-      <!-- NOUVEAU : Texte accessible invisible pour satisfaire Lighthouse et le SEO -->
+      <!-- Texte accessible invisible pour le contraste et le SEO -->
       <h1 class="sr-only">THEO LADJ DESIGN</h1>
 
-      <!-- NOUVEAU : aria-hidden="true" masque l'animation purement visuelle pour l'audit -->
+      <!-- aria-hidden="true" masque l'animation pour les audits d'accessibilité -->
       <div class="morph-container" aria-hidden="true">
         <div class="word-rotator">
           <div class="word">THEO</div>
@@ -549,7 +564,6 @@
 
     <!-- SECTION 2 — L'ASTRONAUTE -->
     <section id="astronaute">
-      <!-- NOUVEAU : Passage en H2 car le H1 est désormais dans le Hero -->
       <h2 class="section-title reveal">L'ASTRONAUTE</h2>
       <a href="/astronaute/" target="_blank">
         <img class="astronaute-img reveal" src="/images/lastronaute-800w.webp" srcset="/images/lastronaute-800w.webp 800w" sizes="(max-width: 768px) 80vw, 400px" alt="L'Astronaute — projet Théo Legrain" width="400" height="566" fetchpriority="high" />
