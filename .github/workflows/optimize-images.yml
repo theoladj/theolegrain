@@ -29,13 +29,13 @@ jobs:
 
           const imagesDir = 'site/images';
           const quality = 72;
-          const smallWidth = 800;
+          const sizes = [400, 800];
 
           async function processImages() {
             const files = fs.readdirSync(imagesDir).filter(f => f.endsWith('.webp'));
             
             for (const file of files) {
-              if (file.includes('-800w')) continue;
+              if (file.match(/-\d+w\.webp$/)) continue;
               
               const inputPath = path.join(imagesDir, file);
               const baseName = path.basename(file, '.webp');
@@ -43,10 +43,11 @@ jobs:
               console.log(`Processing ${file}...`);
               
               try {
-                const img = sharp(inputPath);
-                const meta = await img.metadata();
+                const imgInstance = sharp(inputPath);
+                const meta = await imgInstance.metadata();
                 const origSize = fs.statSync(inputPath).size;
                 
+                // Recompress full size
                 await sharp(inputPath)
                   .webp({ quality })
                   .toFile(inputPath + '.tmp');
@@ -60,17 +61,20 @@ jobs:
                   console.log(`  Full: already optimal (${Math.round(origSize/1024)}KiB)`);
                 }
                 
-                if (meta.width > smallWidth) {
-                  const smallPath = path.join(imagesDir, baseName + '-800w.webp');
-                  if (!fs.existsSync(smallPath)) {
-                    await sharp(inputPath)
-                      .resize(smallWidth)
-                      .webp({ quality })
-                      .toFile(smallPath);
-                    const smallSize = fs.statSync(smallPath).size;
-                    console.log(`  Small 800w: ${Math.round(smallSize/1024)}KiB -> ${smallPath}`);
-                  } else {
-                    console.log(`  Small 800w: already exists`);
+                // Create responsive versions
+                for (const targetW of sizes) {
+                  if (meta.width > targetW) {
+                    const smallPath = path.join(imagesDir, baseName + '-' + targetW + 'w.webp');
+                    if (!fs.existsSync(smallPath)) {
+                      await sharp(inputPath)
+                        .resize(targetW)
+                        .webp({ quality })
+                        .toFile(smallPath);
+                      const smallSize = fs.statSync(smallPath).size;
+                      console.log(`  ${targetW}w: ${Math.round(smallSize/1024)}KiB -> ${smallPath}`);
+                    } else {
+                      console.log(`  ${targetW}w: already exists`);
+                    }
                   }
                 }
               } catch (err) {
@@ -82,9 +86,10 @@ jobs:
           processImages().catch(console.error);
           EOF
 
-      - name: Update HTML files with srcset
+      - name: Update HTML files with srcset and width/height
         run: |
           node << 'EOF'
+          const sharp = require('sharp');
           const fs = require('fs');
           const path = require('path');
 
@@ -98,46 +103,126 @@ jobs:
 
           const imagesDir = 'site/images';
 
-          function buildSrcset(src) {
+          async function getImageDimensions(filename) {
+            const imgPath = path.join(imagesDir, filename);
+            if (!fs.existsSync(imgPath)) return null;
+            try {
+              const meta = await sharp(imgPath).metadata();
+              return { width: meta.width, height: meta.height };
+            } catch (e) {
+              return null;
+            }
+          }
+
+          async function buildSrcset(src) {
             const match = src.match(/\/images\/([^/]+\.webp)/);
             if (!match) return null;
             const filename = match[1];
             const baseName = path.basename(filename, '.webp');
-            const smallPath = path.join(imagesDir, baseName + '-800w.webp');
-            if (!fs.existsSync(smallPath)) return null;
+            
+            const srcsetParts = [];
+            for (const w of [400, 800]) {
+              const smallPath = path.join(imagesDir, baseName + '-' + w + 'w.webp');
+              if (fs.existsSync(smallPath)) {
+                srcsetParts.push(`/images/${baseName}-${w}w.webp ${w}w`);
+              }
+            }
+            
+            const dims = await getImageDimensions(filename);
+            if (dims) {
+              srcsetParts.push(`/images/${filename} ${dims.width}w`);
+            }
+            
+            if (srcsetParts.length < 2) return null;
+            
             return {
-              srcset: `/images/${baseName}-800w.webp 800w, /images/${filename} 1600w`,
-              sizes: '(max-width: 900px) 800px, 100vw'
+              srcset: srcsetParts.join(', '),
+              sizes: '(max-width: 480px) 400px, (max-width: 900px) 800px, 100vw',
+              dims
             };
           }
 
-          for (const htmlFile of htmlFiles) {
-            if (!fs.existsSync(htmlFile)) continue;
-            let content = fs.readFileSync(htmlFile, 'utf8');
-            let modified = false;
-            
-            content = content.replace(/<img([^>]*?)src="(\/images\/[^"]+\.webp[/]?)"([^>]*?)>/g, (match, before, src, after) => {
-              if (match.includes('srcset=')) return match;
-              const srcsetInfo = buildSrcset(src);
-              if (!srcsetInfo) return match;
-              modified = true;
-              return `<img${before}src="${src}" srcset="${srcsetInfo.srcset}" sizes="${srcsetInfo.sizes}"${after}>`;
-            });
-            
-            if (modified) {
-              fs.writeFileSync(htmlFile, content, 'utf8');
-              console.log(`Updated ${htmlFile}`);
+          async function processHtmlFiles() {
+            for (const htmlFile of htmlFiles) {
+              if (!fs.existsSync(htmlFile)) continue;
+              let content = fs.readFileSync(htmlFile, 'utf8');
+              let modified = false;
+              
+              const imgRegex = /<img([^>]*?)>/g;
+              let newContent = '';
+              let lastIndex = 0;
+              let match;
+              
+              while ((match = imgRegex.exec(content)) !== null) {
+                newContent += content.slice(lastIndex, match.index);
+                const imgTag = match[0];
+                const attrs = match[1];
+                
+                const srcMatch = attrs.match(/src="(\/images\/[^"]+\.webp[/]?)"/);
+                
+                if (srcMatch && !imgTag.includes('srcset=')) {
+                  const src = srcMatch[1];
+                  const srcsetInfo = await buildSrcset(src);
+                  
+                  if (srcsetInfo) {
+                    modified = true;
+                    let newAttrs = attrs;
+                    
+                    // Add srcset and sizes
+                    newAttrs = newAttrs.replace(
+                      /src="([^"]+)"/,
+                      `src="$1" srcset="${srcsetInfo.srcset}" sizes="${srcsetInfo.sizes}"`
+                    );
+                    
+                    // Add width/height if not present and we have dims
+                    if (srcsetInfo.dims && !newAttrs.includes('width=') && !newAttrs.includes('height=')) {
+                      newAttrs += ` width="${srcsetInfo.dims.width}" height="${srcsetInfo.dims.height}"`;
+                    }
+                    
+                    newContent += `<img${newAttrs}>`;
+                  } else {
+                    newContent += imgTag;
+                  }
+                } else if (srcMatch && imgTag.includes('srcset=') && !imgTag.includes('width=')) {
+                  // Already has srcset but missing width/height
+                  const src = srcMatch[1];
+                  const match2 = src.match(/\/images\/([^/]+\.webp)/);
+                  if (match2) {
+                    const dims = await getImageDimensions(match2[1]);
+                    if (dims) {
+                      modified = true;
+                      let newAttrs = attrs + ` width="${dims.width}" height="${dims.height}"`;
+                      newContent += `<img${newAttrs}>`;
+                    } else {
+                      newContent += imgTag;
+                    }
+                  } else {
+                    newContent += imgTag;
+                  }
+                } else {
+                  newContent += imgTag;
+                }
+                
+                lastIndex = match.index + match[0].length;
+              }
+              
+              newContent += content.slice(lastIndex);
+              
+              if (modified) {
+                fs.writeFileSync(htmlFile, newContent, 'utf8');
+                console.log(`Updated ${htmlFile}`);
+              }
             }
           }
+
+          processHtmlFiles().catch(console.error);
           EOF
 
       - name: Cleanup and commit only site files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Remove node_modules from git tracking if present
           git rm -r --cached node_modules/ package-lock.json package.json 2>/dev/null || true
-          # Only stage site directory changes
           git add site/
-          git diff --staged --quiet || git commit -m "Optimisation images: compression WebP + srcset 800w"
+          git diff --staged --quiet || git commit -m "Optimisation images: srcset 400w + width/height attributs"
           git push
