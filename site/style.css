@@ -7,10 +7,10 @@
    ───────────────────────────────────────────── */
 
 :root {
-  --nuit: #121316;
-  --ardoise: #1c1e23;
-  --os: #dcd8cf;
-  --gris: #96938d;
+  --nuit: #070708;
+  --ardoise: #111214;
+  --os: #e3dfd6;
+  --gris: #8d8a84;
   --mauve: #b4a2c4;
   --brique: #8f3b32;
   --trait: rgba(220, 216, 207, 0.16);
@@ -87,7 +87,7 @@ a:hover { color: var(--mauve); }
   z-index: 40;
   transition: transform 0.45s var(--sortie), background-color 0.3s ease;
 }
-.barre-fixe.est-fond { background: rgba(18, 19, 22, 0.82); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.barre-fixe.est-fond { background: rgba(7, 7, 8, 0.8); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .barre-fixe.est-cachee { transform: translateY(-100%); }
 .barre-fixe:focus-within { transform: none; }
 .barre {
@@ -284,7 +284,7 @@ a:hover > .affiche, a.affiche:hover, li:hover > .affiche, .affiche-bouton:hover 
   left: 0.75rem; bottom: 0.75rem;
   width: 2.75rem; height: 2.75rem;
   background: var(--os)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23121316' d='M8 5v14l11-7z'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23070708' d='M8 5v14l11-7z'/%3E%3C/svg%3E")
     center / 55% no-repeat;
   border-radius: 50%;
   transition: transform 0.45s var(--sortie), background-color 0.2s;
@@ -426,10 +426,8 @@ a:hover > .affiche, a.affiche:hover, li:hover > .affiche, .affiche-bouton:hover 
 .pied-bas ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; list-style: none; }
 
 /* L'autocollant « Ne clique pas » */
+.aimant-coin { position: absolute; right: var(--marge); top: clamp(-3.5rem, -5vw, -2.5rem); z-index: 2; }
 .autocollant {
-  position: absolute;
-  right: var(--marge);
-  top: clamp(-3.5rem, -5vw, -2.5rem);
   display: grid;
   place-items: center;
   width: clamp(6.5rem, 11vw, 9rem);
@@ -474,13 +472,6 @@ a:hover > .affiche, a.affiche:hover, li:hover > .affiche, .affiche-bouton:hover 
    ═════════════════════════════════════════════ */
 @media (prefers-reduced-motion: no-preference) {
 
-  /* Transition douce entre les pages (navigateurs compatibles) */
-  @view-transition { navigation: auto; }
-  ::view-transition-old(root) { animation: page-sort 0.25s ease-in both; }
-  ::view-transition-new(root) { animation: page-entre 0.5s var(--sortie) both; }
-  @keyframes page-sort { to { opacity: 0; transform: translateY(-0.75rem); } }
-  @keyframes page-entre { from { opacity: 0; transform: translateY(1rem); } }
-
   /* Grand titre : les lettres montent une à une derrière un masque */
   .mot {
     display: inline-block;
@@ -490,16 +481,13 @@ a:hover > .affiche, a.affiche:hover, li:hover > .affiche, .affiche-bouton:hover 
     padding: 0.14em 0.05em 0.2em;
     margin: -0.14em -0.05em -0.2em;
   }
-  .lettre {
-    display: inline-block;
-    transform: translateY(125%);
-    animation: monter 1s var(--sortie) forwards;
-    animation-delay: calc(var(--i) * 38ms + 0.1s);
-  }
+  .lettre { display: inline-block; transform: translateY(125%); }
+  .pret .lettre { animation: monter 1.1s var(--sortie) forwards; animation-delay: calc(var(--i) * 42ms + 0.15s); }
   @keyframes monter { to { transform: translateY(0); } }
 
   /* Arrivée du reste de l'en-tête */
-  .js .entree { opacity: 0; animation: apparaitre 0.9s var(--sortie) forwards; animation-delay: var(--retard, 0.6s); }
+  .js .entree { opacity: 0; }
+  .js.pret .entree { animation: apparaitre 0.9s var(--sortie) forwards; animation-delay: var(--retard, 0.7s); }
   @keyframes apparaitre { from { opacity: 0; transform: translateY(1.25rem); } to { opacity: 1; transform: none; } }
 
   .js .pile .affiche { opacity: 0; animation: poser 1.1s var(--sortie) forwards; }
@@ -551,5 +539,207 @@ a:hover > .affiche, a.affiche:hover, li:hover > .affiche, .affiche-bouton:hover 
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .chargeur, .rideau, .curseur, .flotteur { display: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+
+/* ═════════════════════════════════════════════
+   MISE EN SCÈNE
+   Les éléments .chargeur, .rideau, .curseur et .flotteur
+   sont créés par script.js : sans script, ils n'existent pas.
+   ═════════════════════════════════════════════ */
+
+/* Cache posé dès le <head> pour éviter un flash avant le script */
+html.charge body::before, html.arrive body::before { content: ""; position: fixed; inset: 0; z-index: 65; background: var(--nuit); }
+html.arrive body::before { background: var(--ardoise); }
+
+/* Écran de chargement */
+.chargeur {
+  position: fixed; inset: 0; z-index: 80;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 1.25rem var(--marge) 1rem;
+  background: var(--nuit);
+  transition: transform 1s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.chargeur.fini { transform: translateY(-100%); }
+.chargeur-nom { font-weight: 700; }
+.chargeur-compte {
+  align-self: flex-end;
+  font-weight: 800; font-stretch: 75%;
+  font-size: clamp(7rem, 26vw, 24rem);
+  line-height: 0.8;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Rideau entre deux pages */
+.rideau { position: fixed; inset: 0; z-index: 70; background: var(--ardoise); transform: translateY(100%); pointer-events: none; }
+.rideau.pose { transform: none; }
+.rideau.couvre { transform: none; transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1); }
+.rideau.decouvre { transform: translateY(-100%); transition: transform 0.85s cubic-bezier(0.7, 0, 0.2, 1); }
+
+/* Curseur */
+.curseur { position: fixed; left: 0; top: 0; z-index: 60; width: 0; height: 0; pointer-events: none; opacity: 0; mix-blend-mode: difference; transition: opacity 0.3s; }
+.curseur.visible { opacity: 1; }
+.curseur span {
+  position: absolute;
+  left: -0.4rem; top: -0.4rem; width: 0.8rem; height: 0.8rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--os);
+  background: var(--os);
+  color: var(--nuit);
+  font-size: 0.875rem; font-weight: 700; line-height: 1;
+  overflow: hidden;
+  transition: width 0.4s var(--sortie), height 0.4s var(--sortie), left 0.4s var(--sortie), top 0.4s var(--sortie), background-color 0.3s;
+}
+.curseur.lien span { left: -1.4rem; top: -1.4rem; width: 2.8rem; height: 2.8rem; background: transparent; }
+.curseur.mot { mix-blend-mode: normal; }
+.curseur.mot span { left: -2.6rem; top: -2.6rem; width: 5.2rem; height: 5.2rem; }
+
+/* ── Accueil : mur d'affiches dans le noir, éclairé à la lampe torche ── */
+.accueil-tete { overflow: hidden; isolation: isolate; }
+.accueil-scene { display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; position: relative; z-index: 3; }
+.accueil-scene .titre-geant { font-size: clamp(5rem, 22vw, 22rem); line-height: 0.8; margin-left: -0.03em; }
+.accueil-bas { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; margin-top: clamp(1.25rem, 3vw, 2.25rem); }
+.accueil-bas p { max-width: 30ch; font-size: clamp(1.125rem, 1.7vw, 1.5rem); line-height: 1.35; }
+.accueil-bas .defiler { margin-top: 0; }
+
+.mur-fond {
+  position: absolute; inset: -14% -8%; z-index: 0;
+  display: flex; justify-content: center; gap: clamp(0.6rem, 1.2vw, 1.1rem);
+  transform: rotate(-7deg);
+  pointer-events: none;
+}
+.mur-colonne { flex: 1 1 0; min-width: 0; }
+.mur-colonne img { width: 100%; margin-bottom: clamp(0.6rem, 1.2vw, 1.1rem); }
+.mur-voile {
+  position: absolute; inset: 0; z-index: 1;
+  background: rgba(7, 7, 8, 0.9);
+  --masque: radial-gradient(circle clamp(11rem, 22vw, 20rem) at var(--x, 70%) var(--y, 38%), transparent 0%, rgba(0, 0, 0, 0.55) 55%, #000 100%);
+  -webkit-mask-image: var(--masque);
+  mask-image: var(--masque);
+}
+.accueil-tete::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 60%; z-index: 2;
+  background: linear-gradient(to top, var(--nuit) 6%, rgba(7, 7, 8, 0.75) 40%, transparent);
+  pointer-events: none;
+}
+
+/* ── Phrase qui s'allume ── */
+.manifeste { padding-block: clamp(5rem, 14vw, 12rem); }
+.manifeste p {
+  max-width: 22ch;
+  font-weight: 800; font-stretch: 75%;
+  font-size: clamp(2.25rem, 6.4vw, 6rem);
+  line-height: 0.98; letter-spacing: -0.015em;
+}
+
+/* ── Projets : panneaux plein écran qui s'empilent ── */
+.projets-tete { padding-block: 0 clamp(2rem, 5vw, 4rem); }
+.panneau {
+  position: sticky; top: 0;
+  height: 100vh; height: 100svh;
+  overflow: hidden;
+  background: var(--nuit);
+  border-top: 1px solid var(--trait);
+}
+.panneau + .panneau { margin-top: 30vh; }
+.panneau::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(55% 65% at 72% 52%, var(--lueur, transparent), transparent 72%);
+}
+.panneau-mot {
+  position: absolute; left: 0; top: 50%; translate: 0 -50%;
+  white-space: nowrap;
+  font-weight: 800; font-stretch: 75%;
+  font-size: clamp(9rem, 30vw, 30rem); line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(227, 223, 214, 0.2);
+  pointer-events: none;
+  will-change: transform;
+}
+.panneau-int {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  padding-block: calc(var(--barre) + 1rem) 2rem;
+  transform-origin: center 20%;
+  will-change: transform, opacity;
+}
+.panneau-texte { align-self: end; padding-bottom: clamp(1rem, 7vh, 4.5rem); }
+.panneau-texte p { max-width: 34ch; margin-block: 1.25rem 1.5rem; font-size: 1.1875rem; color: var(--gris); }
+.panneau-texte h3 a { text-decoration: none; }
+.panneau-visuel {
+  display: block;
+  justify-self: center;
+  width: min(100%, 30rem, calc((100svh - var(--barre) - 5rem) * 0.7));
+  will-change: transform;
+}
+.panneau-visuel .affiche { --angle: 0deg; box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.6); }
+.panneau:nth-of-type(even) .panneau-visuel { order: -1; }
+.panneau:nth-of-type(even)::before { background: radial-gradient(55% 65% at 28% 52%, var(--lueur, transparent), transparent 72%); }
+
+/* Lueur d'en-tête des pages projet */
+.teinte { position: relative; }
+.teinte::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 90% at 78% 30%, var(--lueur, transparent), transparent 72%); pointer-events: none; }
+.teinte > * { position: relative; }
+
+/* ── Montages : liste, la vignette suit le pointeur ── */
+.liste-videos { list-style: none; border-top: 1px solid var(--trait); }
+.ligne-video {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding-block: clamp(1rem, 2.4vw, 1.9rem);
+  border-bottom: 1px solid var(--trait);
+  text-decoration: none;
+  transition: opacity 0.35s ease, color 0.2s;
+}
+.ligne-titre { font-weight: 800; font-stretch: 75%; font-size: clamp(2rem, 5.5vw, 4.75rem); line-height: 0.95; transition: transform 0.6s var(--sortie); }
+.ligne-fin { display: flex; align-items: center; gap: 1rem; flex: none; color: var(--gris); }
+.ligne-vignette { width: 6.5rem; aspect-ratio: 16 / 9; object-fit: cover; }
+@media (hover: hover) and (pointer: fine) {
+  .ligne-video:hover .ligne-titre { transform: translateX(clamp(0.75rem, 2vw, 2rem)); }
+  .liste-videos:hover .ligne-video:not(:hover) { opacity: 0.3; }
+  .js .ligne-vignette { display: none; }
+}
+.flotteur {
+  position: fixed; left: 0; top: 0; z-index: 45;
+  width: clamp(16rem, 26vw, 24rem); aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--ardoise);
+  pointer-events: none;
+  opacity: 0;
+  clip-path: inset(50% 0 50% 0);
+  transition: clip-path 0.5s var(--sortie), opacity 0.3s;
+}
+.flotteur.actif { opacity: 1; clip-path: inset(0 0 0 0); }
+.flotteur img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Pied de page : bandeau */
+.pied .bandeau { border: 0; padding-block: 0; margin-bottom: clamp(2rem, 5vw, 4rem); }
+.pied { padding-top: clamp(2.5rem, 6vw, 5rem); }
+
+@media (max-width: 860px) {
+  .mur-colonne:nth-child(n + 4) { display: none; }
+  .mur-fond { inset: -10% -18%; }
+  .panneau-int { grid-template-columns: 1fr; align-content: center; gap: 1.25rem; }
+  .panneau-visuel, .panneau:nth-of-type(even) .panneau-visuel { order: -1; justify-self: start; width: min(64vw, calc(46svh * 0.7)); }
+  .panneau-texte { align-self: start; padding-bottom: 0; }
+  .panneau + .panneau { margin-top: 12vh; }
+  .ligne-fin span { display: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Les colonnes du mur dérivent lentement, une sur deux à l'envers */
+  .mur-colonne > div { animation: deriver 60s linear infinite; }
+  .mur-colonne:nth-child(even) > div { animation-direction: reverse; animation-duration: 74s; }
+  .mur-colonne:nth-child(3) > div { animation-duration: 48s; }
+  .mur-colonne:nth-child(5) > div { animation-duration: 66s; }
+  @keyframes deriver { to { transform: translateY(-50%); } }
+
+  .js [data-mots] .m { opacity: 0.13; transition: opacity 0.45s ease; }
+  .js [data-mots] .m.allume { opacity: 1; }
 }
