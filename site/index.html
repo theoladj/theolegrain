@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://theolegrain.fr/images/lastronaute-800w.webp">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <meta name="theme-color" content="#1f2eeb">
+  <meta name="theme-color" content="#121316">
 
   <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
@@ -24,11 +24,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.className = "js";</script>
+  <script src="/script.js" defer></script>
   <link rel="preload" as="image" href="/images/lastronaute-800w.webp" fetchpriority="high">
 </head>
 <body>
 
-  <header class="bleu accueil-tete">
+  <header class="accueil-tete">
+    <div class="barre-fixe">
     <nav class="conteneur barre" aria-label="Navigation principale">
       <a class="barre-nom" href="/" aria-current="page">Théo Legrain</a>
       <ul class="barre-liens">
@@ -37,40 +40,43 @@
         <li><a href="mailto:theo.legrain@iscom.org">Mail</a></li>
       </ul>
     </nav>
+    </div>
 
     <div class="conteneur accueil-scene">
       <div class="accueil-texte">
-        <h1 class="titre-geant">Théo<br>Legrain</h1>
-        <p>Affiches, identités de marque, photo et montage vidéo. Étudiant à l'ISCOM Lille, je signe mes visuels Ladj.</p>
+        <h1 class="titre-geant" data-lettres>Théo<br>Legrain</h1>
+        <p class="entree">Affiches, identités de marque, photo et montage vidéo. Étudiant à l'ISCOM Lille, je signe mes visuels Ladj.</p>
+        <a class="defiler entree" style="--retard: 1s" href="#projets">Défiler</a>
       </div>
 
       <div class="pile">
-        <a class="affiche" href="/astronaute/">
-          <img src="/images/lastronaute-800w.webp" alt="L'Astronaute, version rouge" width="800" height="1132" fetchpriority="high">
-        </a>
-        <a class="affiche" href="/alice/">
-          <img src="/images/afficheAIB-800w.webp" alt="Affiche Alice in Borderland III" width="800" height="1116">
-        </a>
-        <a class="affiche" href="#vrac">
-          <img src="/images/lahaine.webp" alt="Affiche La Haine" width="384" height="544">
-        </a>
+        <div class="pile-item"><a class="affiche" href="/astronaute/"><img src="/images/lastronaute-800w.webp" alt="L'Astronaute, version rouge" width="800" height="1132" fetchpriority="high"></a></div>
+        <div class="pile-item"><a class="affiche" href="/alice/"><img src="/images/afficheAIB-800w.webp" alt="Affiche Alice in Borderland III" width="800" height="1116"></a></div>
+        <div class="pile-item"><a class="affiche" href="#vrac"><img src="/images/lahaine.webp" alt="Affiche La Haine" width="384" height="544"></a></div>
       </div>
     </div>
   </header>
+
+  <div class="bandeau" aria-hidden="true">
+    <div class="bandeau-piste">
+      <div class="bandeau-groupe"><span>Affiches</span><i></i><span>Identités de marque</span><i></i><span>Photo</span><i></i><span>Montage vidéo</span><i></i></div>
+      <div class="bandeau-groupe"><span>Affiches</span><i></i><span>Identités de marque</span><i></i><span>Photo</span><i></i><span>Montage vidéo</span><i></i></div>
+    </div>
+  </div>
 
   <main>
 
     <section class="section" id="projets">
       <div class="conteneur">
         <div class="section-tete">
-          <h2 class="titre-section">Projets</h2>
+          <h2 class="titre-section" data-rev="titre"><span>Projets</span></h2>
         </div>
 
         <article class="projet">
-          <a class="projet-visuel" href="/astronaute/" tabindex="-1" aria-hidden="true">
-            <span class="affiche"><img src="/images/astronaute2-800w.webp" alt="" width="800" height="1132" loading="lazy"></span>
+          <a class="projet-visuel" href="/astronaute/" tabindex="-1" aria-hidden="true" data-rev="image" data-px="0.07">
+            <span class="affiche cadre"><img src="/images/astronaute2-800w.webp" alt="" width="800" height="1132" loading="lazy"></span>
           </a>
-          <div class="projet-texte">
+          <div class="projet-texte" data-rev="texte">
             <h3 class="titre-projet"><a href="/astronaute/">L'Astronaute</a></h3>
             <p>Un exercice pour apprendre à gérer les reflets de lumière, décliné en deux versions : orange et rouge.</p>
             <a class="lien-fort" href="/astronaute/">Voir L'Astronaute</a>
@@ -78,10 +84,10 @@
         </article>
 
         <article class="projet">
-          <a class="projet-visuel" href="/alice/" tabindex="-1" aria-hidden="true">
-            <span class="affiche"><img src="/images/affiche5-800w.webp" alt="" width="800" height="1117" loading="lazy"></span>
+          <a class="projet-visuel" href="/alice/" tabindex="-1" aria-hidden="true" data-rev="image" data-px="0.07">
+            <span class="affiche cadre"><img src="/images/affiche5-800w.webp" alt="" width="800" height="1117" loading="lazy"></span>
           </a>
-          <div class="projet-texte">
+          <div class="projet-texte" data-rev="texte">
             <h3 class="titre-projet"><a href="/alice/">Alice in Borderland III</a></h3>
             <p>Six affiches pour la saison 3 de la série, une par jeu, avec les personnages en gros plan.</p>
             <a class="lien-fort" href="/alice/">Voir les six affiches</a>
@@ -90,81 +96,82 @@
       </div>
     </section>
 
-    <section class="section" id="vrac">
-      <div class="conteneur">
-        <div class="section-tete">
-          <h2 class="titre-section">Designs en vrac</h2>
+    <section class="defile" id="vrac">
+      <div class="defile-colle">
+        <div class="conteneur section-tete">
+          <h2 class="titre-section" data-rev="titre"><span>Designs en vrac</span></h2>
           <p>Publicités, affiches, logo et projets de cours.</p>
         </div>
 
-        <ul class="mur">
-          <li><span class="affiche"><img src="/images/redbull1.webp" alt="Publicité Red Bull, édition tropicale" width="384" height="543" loading="lazy"></span><p class="legende">Red Bull, édition tropicale</p></li>
-          <li><span class="affiche"><img src="/images/redbull2.webp" alt="Publicité Red Bull, édition verte" width="384" height="545" loading="lazy"></span><p class="legende">Red Bull, édition verte</p></li>
-          <li><span class="affiche"><img src="/images/lahaine.webp" alt="Affiche La Haine" width="384" height="544" loading="lazy"></span><p class="legende">La Haine</p></li>
-          <li><span class="affiche"><img src="/images/travis%20scott.webp" alt="Affiche Travis Scott, Utopia" width="384" height="544" loading="lazy"></span><p class="legende">Travis Scott, Utopia</p></li>
-          <li><span class="affiche"><img src="/images/BrutDesign.webp" alt="Affiche Ladj Design, style brutaliste" width="384" height="544" loading="lazy"></span><p class="legende">Ladj Design</p></li>
-          <li><span class="affiche"><img src="/images/FlowMusique.webp" alt="Publicité Flow Musique, première version" width="384" height="545" loading="lazy"></span><p class="legende">Flow Musique, version 1</p></li>
-          <li><span class="affiche"><img src="/images/FlowMusique2.webp" alt="Publicité Flow Musique, seconde version" width="384" height="545" loading="lazy"></span><p class="legende">Flow Musique, version 2</p></li>
-          <li><span class="affiche"><img src="/images/LogoWave.webp" alt="Logo Wave" width="384" height="543" loading="lazy"></span><p class="legende">Logo Wave</p></li>
-          <li><span class="affiche"><img src="/images/projetPAO1A.webp" alt="Affiche Bali, première version" width="384" height="535" loading="lazy"></span><p class="legende">Bali, version 1</p></li>
-          <li><span class="affiche"><img src="/images/ProjetPAO1A2.webp" alt="Affiche Bali, seconde version" width="384" height="535" loading="lazy"></span><p class="legende">Bali, version 2</p></li>
-          <li><span class="affiche"><img src="/images/9M.webp" alt="Save the date 9M" width="384" height="683" loading="lazy"></span><p class="legende">Save the date 9M</p></li>
-          <li><span class="affiche"><img src="/images/bagoursdor.webp" alt="Tote bag Ours d'Or" width="384" height="576" loading="lazy"></span><p class="legende">Tote bag Ours d'Or</p></li>
+        <ul class="defile-piste">
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/redbull1.webp" alt="Publicité Red Bull, édition tropicale" width="384" height="543"></span><p class="legende">Red Bull, édition tropicale</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/redbull2.webp" alt="Publicité Red Bull, édition verte" width="384" height="545"></span><p class="legende">Red Bull, édition verte</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/lahaine.webp" alt="Affiche La Haine" width="384" height="544"></span><p class="legende">La Haine</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/travis%20scott.webp" alt="Affiche Travis Scott, Utopia" width="384" height="544"></span><p class="legende">Travis Scott, Utopia</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/BrutDesign.webp" alt="Affiche Ladj Design, style brutaliste" width="384" height="544"></span><p class="legende">Ladj Design</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/FlowMusique.webp" alt="Publicité Flow Musique, première version" width="384" height="545"></span><p class="legende">Flow Musique, version 1</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/FlowMusique2.webp" alt="Publicité Flow Musique, seconde version" width="384" height="545"></span><p class="legende">Flow Musique, version 2</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/LogoWave.webp" alt="Logo Wave" width="384" height="543"></span><p class="legende">Logo Wave</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/projetPAO1A.webp" alt="Affiche Bali, première version" width="384" height="535"></span><p class="legende">Bali, version 1</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/ProjetPAO1A2.webp" alt="Affiche Bali, seconde version" width="384" height="535"></span><p class="legende">Bali, version 2</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/9M.webp" alt="Save the date 9M" width="384" height="683"></span><p class="legende">Save the date 9M</p></li>
+          <li data-rev="image"><span class="affiche cadre"><img src="/images/bagoursdor.webp" alt="Tote bag Ours d'Or" width="384" height="576"></span><p class="legende">Tote bag Ours d'Or</p></li>
         </ul>
+        <div class="conteneur"><div class="defile-jauge"><span></span></div></div>
       </div>
     </section>
 
     <section class="section" id="photos">
       <div class="conteneur">
         <div class="section-tete">
-          <h2 class="titre-section">Photos</h2>
+          <h2 class="titre-section" data-rev="titre"><span>Photos</span></h2>
         </div>
 
         <ul class="photos">
-          <li><img src="/images/grand%20place.webp" alt="Grand Place" width="537" height="716" loading="lazy"><p class="legende">Grand Place</p></li>
-          <li><img src="/images/rue%20lille.webp" alt="Rue de Lille" width="537" height="716" loading="lazy"><p class="legende">Rue de Lille</p></li>
-          <li><img src="/images/st%20so.webp" alt="Saint-So" width="537" height="716" loading="lazy"><p class="legende">Saint-So</p></li>
-          <li><img src="/images/maison.webp" alt="Maison" width="537" height="955" loading="lazy"><p class="legende">Maison</p></li>
-          <li><img src="/images/lille%20centre.webp" alt="Lille centre" width="537" height="716" loading="lazy"><p class="legende">Lille centre</p></li>
-          <li><img src="/images/ciel%20bleu.webp" alt="Ciel bleu" width="537" height="716" loading="lazy"><p class="legende">Ciel bleu</p></li>
+          <li data-rev="image"><span class="cadre"><img src="/images/grand%20place.webp" alt="Grand Place" width="537" height="716" loading="lazy"></span><p class="legende">Grand Place</p></li>
+          <li data-rev="image" data-px="0.06"><span class="cadre"><img src="/images/rue%20lille.webp" alt="Rue de Lille" width="537" height="716" loading="lazy"></span><p class="legende">Rue de Lille</p></li>
+          <li data-rev="image"><span class="cadre"><img src="/images/st%20so.webp" alt="Saint-So" width="537" height="716" loading="lazy"></span><p class="legende">Saint-So</p></li>
+          <li data-rev="image"><span class="cadre"><img src="/images/maison.webp" alt="Maison" width="537" height="955" loading="lazy"></span><p class="legende">Maison</p></li>
+          <li data-rev="image" data-px="0.06"><span class="cadre"><img src="/images/lille%20centre.webp" alt="Lille centre" width="537" height="716" loading="lazy"></span><p class="legende">Lille centre</p></li>
+          <li data-rev="image"><span class="cadre"><img src="/images/ciel%20bleu.webp" alt="Ciel bleu" width="537" height="716" loading="lazy"></span><p class="legende">Ciel bleu</p></li>
         </ul>
       </div>
     </section>
 
-    <section class="section" id="videos">
+    <section class="section section-fin" id="videos">
       <div class="conteneur">
         <div class="section-tete">
-          <h2 class="titre-section">Montages vidéo</h2>
+          <h2 class="titre-section" data-rev="titre"><span>Montages vidéo</span></h2>
         </div>
 
         <ul class="videos">
-          <li><a class="video" href="https://youtu.be/RA3VUYPyogI" target="_blank" rel="noopener">
-            <div class="video-vignette"><img src="https://img.youtube.com/vi/RA3VUYPyogI/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
+          <li><a class="video" data-rev="image" href="https://youtu.be/RA3VUYPyogI" target="_blank" rel="noopener">
+            <div class="video-vignette cadre"><img src="https://img.youtube.com/vi/RA3VUYPyogI/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
             <p class="legende">Alice in Borderland</p></a></li>
-          <li><a class="video" href="https://youtu.be/spE--JL8lb4" target="_blank" rel="noopener">
-            <div class="video-vignette"><img src="https://img.youtube.com/vi/spE--JL8lb4/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
+          <li><a class="video" data-rev="image" href="https://youtu.be/spE--JL8lb4" target="_blank" rel="noopener">
+            <div class="video-vignette cadre"><img src="https://img.youtube.com/vi/spE--JL8lb4/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
             <p class="legende">Snowfall, edit 1</p></a></li>
-          <li><a class="video" href="https://youtu.be/cBNGgwVbF9U" target="_blank" rel="noopener">
-            <div class="video-vignette"><img src="https://img.youtube.com/vi/cBNGgwVbF9U/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
+          <li><a class="video" data-rev="image" href="https://youtu.be/cBNGgwVbF9U" target="_blank" rel="noopener">
+            <div class="video-vignette cadre"><img src="https://img.youtube.com/vi/cBNGgwVbF9U/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
             <p class="legende">La Haine, edit 1</p></a></li>
-          <li><a class="video" href="https://youtu.be/ZyKSt_rmARA" target="_blank" rel="noopener">
-            <div class="video-vignette"><img src="https://img.youtube.com/vi/ZyKSt_rmARA/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
+          <li><a class="video" data-rev="image" href="https://youtu.be/ZyKSt_rmARA" target="_blank" rel="noopener">
+            <div class="video-vignette cadre"><img src="https://img.youtube.com/vi/ZyKSt_rmARA/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
             <p class="legende">Snowfall, edit 2</p></a></li>
-          <li><a class="video" href="https://youtu.be/dW-Kw6bwmqk" target="_blank" rel="noopener">
-            <div class="video-vignette"><img src="https://img.youtube.com/vi/dW-Kw6bwmqk/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
+          <li><a class="video" data-rev="image" href="https://youtu.be/dW-Kw6bwmqk" target="_blank" rel="noopener">
+            <div class="video-vignette cadre"><img src="https://img.youtube.com/vi/dW-Kw6bwmqk/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
             <p class="legende">Spider-Man, edit 1</p></a></li>
-          <li><a class="video" href="https://youtu.be/G8lAkYTALOk" target="_blank" rel="noopener">
-            <div class="video-vignette"><img src="https://img.youtube.com/vi/G8lAkYTALOk/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
+          <li><a class="video" data-rev="image" href="https://youtu.be/G8lAkYTALOk" target="_blank" rel="noopener">
+            <div class="video-vignette cadre"><img src="https://img.youtube.com/vi/G8lAkYTALOk/mqdefault.jpg" width="320" height="180" loading="lazy" alt=""></div>
             <p class="legende">Snowfall, edit 3</p></a></li>
         </ul>
 
-        <p class="apres-grille">Plus de montages sur TikTok : <a class="lien-fort" href="https://www.tiktok.com/@theoladj" target="_blank" rel="noopener">@theoladj</a></p>
+        <p class="apres-grille" data-rev="texte">Plus de montages sur TikTok : <a class="lien-fort" href="https://www.tiktok.com/@theoladj" target="_blank" rel="noopener">@theoladj</a></p>
       </div>
     </section>
 
   </main>
 
-  <footer class="bleu pied">
+  <footer class="pied">
     <a class="autocollant" href="https://www.youtube.com/watch?v=Aq5WXmQQooo" target="_blank" rel="noopener">Ne clique pas</a>
     <div class="conteneur">
       <p class="pied-invite">Un projet, une question ? Écris-moi.</p>

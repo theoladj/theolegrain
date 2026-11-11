@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://theolegrain.fr/images/afficheAIB-800w.webp">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <meta name="theme-color" content="#1f2eeb">
+  <meta name="theme-color" content="#121316">
 
   <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
@@ -24,10 +24,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.className = "js";</script>
+  <script src="/script.js" defer></script>
 </head>
 <body>
 
-  <header class="bleu">
+  <header>
+    <div class="barre-fixe">
     <nav class="conteneur barre" aria-label="Navigation principale">
       <a class="barre-nom" href="/">Théo Legrain</a>
       <ul class="barre-liens">
@@ -36,17 +39,18 @@
         <li><a href="mailto:theo.legrain@iscom.org">Mail</a></li>
       </ul>
     </nav>
+    </div>
     <div class="conteneur page-tete">
-      <a class="retour" href="/#projets">Tous les projets</a>
-      <h1 class="titre-geant">Alice in Borderland III</h1>
+      <a class="retour entree" style="--retard: 0.1s" href="/#projets">Tous les projets</a>
+      <h1 class="titre-geant" data-lettres>Alice in Borderland III</h1>
     </div>
   </header>
 
   <main>
     <div class="conteneur">
       <div class="recit">
-        <p class="recit-accroche">Six versions différentes, une par jeu de la saison 3.</p>
-        <div class="recit-corps">
+        <p class="recit-accroche" data-rev="texte">Six versions différentes, une par jeu de la saison 3.</p>
+        <div class="recit-corps" data-rev="texte">
           <p>Pour ma part, appréciant beaucoup la série Alice in Borderland et voyant la saison 3 approcher, je me suis dit : pourquoi ne pas créer mes six affiches sur cette série ?</p>
           <p>Pour l'inspiration, rien de bien compliqué. L'arrivée de la série étant imminente, j'ai pu la regarder dans la foulée et décider de ma ligne directrice : ce sera les jeux présentés dans cette saison 3. Ça tombe bien, il y en a six !</p>
           <p>Pour la ligne conductrice visuelle, j'ai simplement choisi d'utiliser les personnages présents durant cette saison, en gros plan.</p>
@@ -55,27 +59,27 @@
       </div>
 
       <ul class="serie">
-        <li><button class="affiche-bouton" type="button" data-grand="/images/affiche1.webp">
-          <span class="affiche"><img src="/images/affiche1-800w.webp" alt="Affiche 1 : un personnage devant une pluie de flèches enflammées" width="800" height="1117"></span>
+        <li data-rev="image"><button class="affiche-bouton" type="button" data-grand="/images/affiche1.webp">
+          <span class="affiche cadre"><img src="/images/affiche1-800w.webp" alt="Affiche 1 : un personnage devant une pluie de flèches enflammées" width="800" height="1117"></span>
           <span class="sr-only">Agrandir l'affiche 1</span></button></li>
-        <li><button class="affiche-bouton" type="button" data-grand="/images/affiche2.webp">
-          <span class="affiche"><img src="/images/affiche2-800w.webp" alt="Affiche 2 : un personnage éclairé par des néons roses et bleus" width="800" height="1117"></span>
+        <li data-rev="image"><button class="affiche-bouton" type="button" data-grand="/images/affiche2.webp">
+          <span class="affiche cadre"><img src="/images/affiche2-800w.webp" alt="Affiche 2 : un personnage éclairé par des néons roses et bleus" width="800" height="1117"></span>
           <span class="sr-only">Agrandir l'affiche 2</span></button></li>
-        <li><button class="affiche-bouton" type="button" data-grand="/images/affiche3.webp">
-          <span class="affiche"><img src="/images/affiche3-800w.webp" alt="Affiche 3 : deux personnages face à face dans un couloir blanc" width="800" height="1117"></span>
+        <li data-rev="image"><button class="affiche-bouton" type="button" data-grand="/images/affiche3.webp">
+          <span class="affiche cadre"><img src="/images/affiche3-800w.webp" alt="Affiche 3 : deux personnages face à face dans un couloir blanc" width="800" height="1117"></span>
           <span class="sr-only">Agrandir l'affiche 3</span></button></li>
-        <li><button class="affiche-bouton" type="button" data-grand="/images/affiche4.webp">
-          <span class="affiche"><img src="/images/affiche4-800w.webp" alt="Affiche 4 : un personnage dans une rame de métro" width="800" height="1117" loading="lazy"></span>
+        <li data-rev="image"><button class="affiche-bouton" type="button" data-grand="/images/affiche4.webp">
+          <span class="affiche cadre"><img src="/images/affiche4-800w.webp" alt="Affiche 4 : un personnage dans une rame de métro" width="800" height="1117" loading="lazy"></span>
           <span class="sr-only">Agrandir l'affiche 4</span></button></li>
-        <li><button class="affiche-bouton" type="button" data-grand="/images/affiche5.webp">
-          <span class="affiche"><img src="/images/affiche5-800w.webp" alt="Affiche 5 : un personnage aux cheveux bleus dans une rue de néons" width="800" height="1117" loading="lazy"></span>
+        <li data-rev="image"><button class="affiche-bouton" type="button" data-grand="/images/affiche5.webp">
+          <span class="affiche cadre"><img src="/images/affiche5-800w.webp" alt="Affiche 5 : un personnage aux cheveux bleus dans une rue de néons" width="800" height="1117" loading="lazy"></span>
           <span class="sr-only">Agrandir l'affiche 5</span></button></li>
-        <li><button class="affiche-bouton" type="button" data-grand="/images/afficheAIB.webp">
-          <span class="affiche"><img src="/images/afficheAIB-800w.webp" alt="Affiche 6 : deux personnages sous la lune" width="800" height="1116" loading="lazy"></span>
+        <li data-rev="image"><button class="affiche-bouton" type="button" data-grand="/images/afficheAIB.webp">
+          <span class="affiche cadre"><img src="/images/afficheAIB-800w.webp" alt="Affiche 6 : deux personnages sous la lune" width="800" height="1116" loading="lazy"></span>
           <span class="sr-only">Agrandir l'affiche 6</span></button></li>
       </ul>
 
-      <div class="suite">
+      <div class="suite" data-rev="texte">
         <p>Projet suivant</p>
         <a href="/astronaute/"><span class="titre-section">L'Astronaute</span></a>
       </div>
@@ -96,7 +100,7 @@
     </div>
   </dialog>
 
-  <footer class="bleu pied">
+  <footer class="pied">
     <div class="conteneur">
       <p class="pied-invite">Un projet, une question ? Écris-moi.</p>
       <a class="pied-mail" href="mailto:theo.legrain@iscom.org">theo.legrain@iscom.org</a>

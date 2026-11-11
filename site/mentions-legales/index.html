@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://theolegrain.fr/mentions-legales/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <meta name="theme-color" content="#1f2eeb">
+  <meta name="theme-color" content="#121316">
 
   <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
@@ -23,10 +23,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.className = "js";</script>
+  <script src="/script.js" defer></script>
 </head>
 <body>
 
-  <header class="bleu">
+  <header>
+    <div class="barre-fixe">
     <nav class="conteneur barre" aria-label="Navigation principale">
       <a class="barre-nom" href="/">Théo Legrain</a>
       <ul class="barre-liens">
@@ -35,8 +38,9 @@
         <li><a href="mailto:theolegrain@icloud.com">Mail</a></li>
       </ul>
     </nav>
+    </div>
     <div class="conteneur page-tete">
-      <h1 class="titre-section">Mentions légales</h1>
+      <h1 class="titre-section" data-lettres>Mentions légales</h1>
     </div>
   </header>
 
@@ -131,7 +135,7 @@
     </div>
   </main>
 
-  <footer class="bleu pied">
+  <footer class="pied">
     <div class="conteneur">
       <p class="pied-invite">Un projet, une question ? Écris-moi.</p>
       <a class="pied-mail" href="mailto:theolegrain@icloud.com">theolegrain@icloud.com</a>

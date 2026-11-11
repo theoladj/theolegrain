@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://theolegrain.fr/images/lastronaute-800w.webp">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <meta name="theme-color" content="#1f2eeb">
+  <meta name="theme-color" content="#121316">
 
   <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
@@ -24,10 +24,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.className = "js";</script>
+  <script src="/script.js" defer></script>
 </head>
 <body>
 
-  <header class="bleu">
+  <header>
+    <div class="barre-fixe">
     <nav class="conteneur barre" aria-label="Navigation principale">
       <a class="barre-nom" href="/">Théo Legrain</a>
       <ul class="barre-liens">
@@ -36,17 +39,18 @@
         <li><a href="mailto:theo.legrain@iscom.org">Mail</a></li>
       </ul>
     </nav>
+    </div>
     <div class="conteneur page-tete">
-      <a class="retour" href="/#projets">Tous les projets</a>
-      <h1 class="titre-geant">L'Astronaute</h1>
+      <a class="retour entree" style="--retard: 0.1s" href="/#projets">Tous les projets</a>
+      <h1 class="titre-geant" data-lettres>L'Astronaute</h1>
     </div>
   </header>
 
   <main>
     <div class="conteneur">
       <div class="recit">
-        <p class="recit-accroche">Une envie d'apprendre à gérer les reflets de lumière.</p>
-        <div class="recit-corps">
+        <p class="recit-accroche" data-rev="texte">Une envie d'apprendre à gérer les reflets de lumière.</p>
+        <div class="recit-corps" data-rev="texte">
           <p>Pour ce projet, aucune véritable idée de départ, juste une envie d'apprendre à gérer au mieux les reflets de lumière, n'ayant jamais vraiment essayé.</p>
           <p>Je regardais le ciel un soir et j'ai pensé à un astronaute sur une autre planète. Peu à peu, des idées s'assemblent pour finalement donner ce résultat.</p>
           <p>J'ai pu créer une seconde déclinaison avec une variation de couleurs vers le rouge, donnant un aspect légèrement « chaotique ».</p>
@@ -54,8 +58,8 @@
       </div>
 
       <div class="duo">
-        <figure>
-          <span class="affiche">
+        <figure data-rev="image">
+          <span class="affiche cadre">
             <img src="/images/astronaute2-800w.webp"
                  srcset="/images/astronaute2-800w.webp 800w, /images/astronaute2.webp 2480w"
                  sizes="(max-width: 520px) 90vw, 45vw"
@@ -64,8 +68,8 @@
           </span>
           <figcaption class="legende">Version orange</figcaption>
         </figure>
-        <figure>
-          <span class="affiche">
+        <figure data-rev="image">
+          <span class="affiche cadre">
             <img src="/images/lastronaute-800w.webp"
                  srcset="/images/lastronaute-800w.webp 800w, /images/lastronaute.webp 807w"
                  sizes="(max-width: 520px) 90vw, 45vw"
@@ -76,14 +80,14 @@
         </figure>
       </div>
 
-      <div class="suite">
+      <div class="suite" data-rev="texte">
         <p>Projet suivant</p>
         <a href="/alice/"><span class="titre-section">Alice in Borderland III</span></a>
       </div>
     </div>
   </main>
 
-  <footer class="bleu pied">
+  <footer class="pied">
     <div class="conteneur">
       <p class="pied-invite">Un projet, une question ? Écris-moi.</p>
       <a class="pied-mail" href="mailto:theo.legrain@iscom.org">theo.legrain@iscom.org</a>

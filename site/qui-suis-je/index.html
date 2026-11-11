@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://theolegrain.fr/qui-suis-je/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <meta name="theme-color" content="#1f2eeb">
+  <meta name="theme-color" content="#121316">
 
   <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
@@ -23,10 +23,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.className = "js";</script>
+  <script src="/script.js" defer></script>
 </head>
 <body>
 
-  <header class="bleu">
+  <header>
+    <div class="barre-fixe">
     <nav class="conteneur barre" aria-label="Navigation principale">
       <a class="barre-nom" href="/">Théo Legrain</a>
       <ul class="barre-liens">
@@ -35,20 +38,21 @@
         <li><a href="mailto:theo.legrain@iscom.org">Mail</a></li>
       </ul>
     </nav>
+    </div>
     <div class="conteneur page-tete">
-      <h1 class="titre-geant">Qui suis-je&nbsp;?</h1>
+      <h1 class="titre-geant" data-lettres>Qui suis-je&nbsp;?</h1>
     </div>
   </header>
 
   <main>
     <div class="conteneur apropos">
-      <div class="bio">
+      <div class="bio" data-rev="texte">
         <p>Je m'appelle Théo Legrain, j'ai 22 ans et je suis actuellement en seconde année à l'ISCOM de Lille en Communication &amp; Marketing Digital.</p>
         <p>Passionné depuis quelques années maintenant par le digital et plus particulièrement par la création de site web, l'optimisation SEO, le graphisme et j'en passe, je «&nbsp;m'amuse&nbsp;» chaque jour à créer de nouvelles choses, à apprendre, car dans ce milieu on est toujours débutant.</p>
         <p>Durant mes années de lycée j'ai suivi un cursus en Bac Professionnel des métiers de la relation client, puis après une année de césure, je suis tombé par hasard sur l'ISCOM sur internet et ce fut assez rapide de me rediriger vers des études. Mélangeant théorie, créativité et pratique, c'était le compromis parfait pour pouvoir laisser libre cours à mon imagination.</p>
       </div>
 
-      <aside class="cote">
+      <aside class="cote" data-rev="texte" style="--d: 0.15s">
         <h2>Logiciels utilisés</h2>
         <ul class="outils">
           <li>Photoshop</li>
@@ -62,7 +66,7 @@
     </div>
   </main>
 
-  <footer class="bleu pied">
+  <footer class="pied">
     <div class="conteneur">
       <p class="pied-invite">Un projet, une question ? Écris-moi.</p>
       <a class="pied-mail" href="mailto:theo.legrain@iscom.org">theo.legrain@iscom.org</a>
