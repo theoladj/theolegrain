@@ -320,6 +320,9 @@ a:hover > .affiche, a.affiche:hover, li:hover > .affiche, .affiche-bouton:hover 
 .duo figure:nth-child(1) .affiche { --angle: -1.5deg; }
 .duo figure:nth-child(2) .affiche { --angle: 1.2deg; }
 .duo figure:nth-child(2) { margin-top: clamp(0rem, 6vw, 5rem); }
+.duo video { display: block; width: 100%; height: auto; background: var(--nuit); }
+.duo-video { width: 100%; max-width: 24rem; justify-self: center; }
+.duo figure.duo-video .affiche { --angle: 0deg; }
 
 .serie {
   display: grid;

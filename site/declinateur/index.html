@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Déclinateur — Théo Legrain</title>
+  <meta name="description" content="Le Déclinateur : un SaaS pour décliner n'importe quelle image en ne changeant qu'un paramètre à la fois.">
+
+  <meta property="og:title" content="Le Déclinateur — Théo Legrain">
+  <meta property="og:description" content="Le Déclinateur : un SaaS pour décliner n'importe quelle image en ne changeant qu'un paramètre à la fois.">
+  <meta property="og:url" content="https://theolegrain.fr/declinateur/">
+  <meta property="og:image" content="https://theolegrain.fr/images/declinateur-affiche-800w.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="theme-color" content="#070708">
+
+  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+  <link rel="shortcut icon" href="/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>(function(d){var c="js";try{if(!sessionStorage.getItem("tl-vu"))c+=" charge";else if(sessionStorage.getItem("tl-nav"))c+=" arrive";}catch(e){}d.className=c;setTimeout(function(){if(!window.__tl)d.className="";},3500);})(document.documentElement);</script>
+  <script src="/script.js" defer></script>
+</head>
+<body>
+
+  <header class="teinte" style="--lueur: #0c3a32">
+    <div class="barre-fixe">
+    <nav class="conteneur barre" aria-label="Navigation principale">
+      <a class="barre-nom" href="/">Théo Legrain</a>
+      <ul class="barre-liens">
+        <li><a href="/#projets">Projets</a></li>
+        <li><a href="/qui-suis-je/">Qui suis-je&nbsp;?</a></li>
+        <li><a href="mailto:theo.legrain@iscom.org">Mail</a></li>
+      </ul>
+    </nav>
+    </div>
+    <div class="conteneur page-tete">
+      <a class="retour entree" style="--retard: 0.1s" href="/#projets">Tous les projets</a>
+      <h1 class="titre-geant" data-lettres>Le Déclinateur</h1>
+    </div>
+  </header>
+
+  <main>
+    <div class="conteneur">
+      <div class="recit">
+        <p class="recit-accroche" data-rev="texte">Change un détail. Garde tout le reste.</p>
+        <div class="recit-corps" data-rev="texte">
+          <p>Le Déclinateur est un SaaS qui permet de décliner n'importe quelle image via différents paramètres : couleurs, texture, sujet, typographie, etc.</p>
+          <p>Le point de départ : demander un seul changement à une IA, juste le fond en vert, et la voir tout refaire avec. Dix-sept essais, dix-sept affiches différentes. C'est du loto.</p>
+          <p>Le Déclinateur découpe l'image en sept ingrédients : couleur, cadrage, style, sujet, texte, lumière et matière. On verrouille les six qu'on aime, on en libère un seul, et un clic donne trois versions où seul cet ingrédient a bougé. On garde ses préférées, et la série est prête.</p>
+        </div>
+      </div>
+
+      <div class="duo">
+        <figure class="duo-video" data-rev="image">
+          <span class="affiche cadre">
+            <video controls playsinline preload="none" poster="/images/declinateur-video.webp" width="720" height="1280" aria-label="Vidéo de présentation du Déclinateur">
+              <source src="/videos/declinateur.mp4" type="video/mp4">
+            </video>
+          </span>
+          <figcaption class="legende">La vidéo de présentation, 45 secondes</figcaption>
+        </figure>
+        <figure data-rev="image">
+          <span class="affiche cadre">
+            <img src="/images/declinateur-ingredients-800w.webp"
+                 srcset="/images/declinateur-ingredients-800w.webp 800w, /images/declinateur-ingredients.webp 1080w"
+                 sizes="(max-width: 520px) 90vw, 45vw"
+                 alt="L'interface du Déclinateur : une affiche découpée en sept ingrédients, couleur, cadrage, style, sujet, texte, lumière et matière"
+                 width="1080" height="1528" loading="lazy">
+          </span>
+          <figcaption class="legende">L'image découpée en sept ingrédients</figcaption>
+        </figure>
+      </div>
+
+      <ul class="serie">
+        <li data-rev="image">
+          <span class="affiche cadre"><img src="/images/declinateur-verrou-800w.webp" alt="Six ingrédients verrouillés, seule la couleur est libre" width="800" height="1132" loading="lazy"></span>
+          <p class="legende">Six ingrédients verrouillés, un seul libéré</p></li>
+        <li data-rev="image">
+          <span class="affiche cadre"><img src="/images/declinateur-clic-800w.webp" alt="Le bouton Décliner fois trois" width="800" height="1132" loading="lazy"></span>
+          <p class="legende">Un clic : décliner fois trois</p></li>
+        <li data-rev="image">
+          <span class="affiche cadre"><img src="/images/declinateur-versions-800w.webp" alt="Trois versions de la même affiche : même forme, même titre, même cadrage, seule la couleur change" width="800" height="1132" loading="lazy"></span>
+          <p class="legende">Trois versions, seule la couleur a bougé</p></li>
+      </ul>
+
+      <div class="suite" data-rev="texte">
+        <p>Projet suivant</p>
+        <a href="/astronaute/"><span class="titre-section">L'Astronaute</span></a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur">
+      <p class="pied-invite">Un projet, une question ? Écris-moi.</p>
+      <a class="pied-mail" href="mailto:theo.legrain@iscom.org">theo.legrain@iscom.org</a>
+      <div class="pied-bas">
+        <ul>
+          <li><a href="https://www.linkedin.com/in/th%C3%A9o-legrain-5241a1336/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.tiktok.com/@theoladj" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="/qui-suis-je/">Qui suis-je&nbsp;?</a></li>
+          <li><a href="/mentions-legales/">Mentions légales</a></li>
+        </ul>
+        <p>theolegrain.fr, 2026</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
