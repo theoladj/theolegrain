@@ -173,6 +173,21 @@
 
   if (calme) return;   // rien de ce qui suit ne tourne en mode « moins de mouvement »
 
+  /* ══ Vidéos muettes : lecture seulement quand elles sont à l'écran ══ */
+  if ('IntersectionObserver' in window) {
+    var guetVideo = new IntersectionObserver(function (entrees) {
+      entrees.forEach(function (e) {
+        if (e.isIntersecting) {
+          var lecture = e.target.play();
+          if (lecture && lecture.catch) lecture.catch(function () { /* lecture auto refusée : l'affiche reste */ });
+        } else {
+          e.target.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+    tous('video[data-auto]').forEach(function (v) { guetVideo.observe(v); });
+  }
+
   /* ══ 4. Pointeur : curseur, lampe torche, inclinaison, aimants, vignette flottante ══ */
   var px = window.innerWidth / 2, py = window.innerHeight / 2;   // position réelle du pointeur
   var aBouge = false;

@@ -320,9 +320,8 @@ a:hover > .affiche, a.affiche:hover, li:hover > .affiche, .affiche-bouton:hover 
 .duo figure:nth-child(1) .affiche { --angle: -1.5deg; }
 .duo figure:nth-child(2) .affiche { --angle: 1.2deg; }
 .duo figure:nth-child(2) { margin-top: clamp(0rem, 6vw, 5rem); }
-.duo video { display: block; width: 100%; height: auto; background: var(--nuit); }
-.duo-video { width: 100%; max-width: 24rem; justify-self: center; }
-.duo figure.duo-video .affiche { --angle: 0deg; }
+.solo { width: min(100%, 26rem, calc((100svh - 7rem) * 0.5625)); margin-inline: auto; padding-bottom: clamp(4rem, 9vw, 8rem); }
+.affiche video { display: block; width: 100%; height: auto; background: var(--nuit); }
 
 .serie {
   display: grid;
@@ -682,6 +681,7 @@ html.arrive body::before { background: var(--ardoise); }
   width: min(100%, 30rem, calc((100svh - var(--barre) - 5rem) * 0.7));
   will-change: transform;
 }
+.panneau-visuel-video { width: min(100%, 26rem, calc((100svh - var(--barre) - 5rem) * 0.5625)); }
 .panneau-visuel .affiche { --angle: 0deg; box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.6); }
 .panneau:nth-of-type(even) .panneau-visuel { order: -1; }
 .panneau:nth-of-type(even)::before { background: radial-gradient(55% 65% at 28% 52%, var(--lueur, transparent), transparent 72%); }
@@ -730,6 +730,7 @@ html.arrive body::before { background: var(--ardoise); }
   .mur-fond { inset: -10% -18%; }
   .panneau-int { grid-template-columns: 1fr; align-content: center; gap: 1.25rem; }
   .panneau-visuel, .panneau:nth-of-type(even) .panneau-visuel { order: -1; justify-self: start; width: min(64vw, calc(46svh * 0.7)); }
+  .panneau-visuel.panneau-visuel-video, .panneau:nth-of-type(even) .panneau-visuel.panneau-visuel-video { width: min(56vw, calc(48svh * 0.5625)); }
   .panneau-texte { align-self: start; padding-bottom: 0; }
   .panneau + .panneau { margin-top: 12vh; }
   .ligne-fin span { display: none; }
